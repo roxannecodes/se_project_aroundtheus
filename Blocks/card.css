@@ -1,0 +1,16 @@
+.card {
+    background-color: #fff;
+    flex-direction: column;
+    max-width: 282px;
+}
+
+.card__image {
+    width: 282px;
+    height: 282px;
+}
+
+.card__description {
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+}
