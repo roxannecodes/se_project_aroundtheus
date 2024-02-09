@@ -1,6 +1,7 @@
 .footer {
-    max-width: 318px;
-    padding-top: 67px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    width: 100%;
+    display: flex;
 }
 
 .footer__text {
@@ -9,4 +10,20 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
+}
+
+@media screen and (max-width:885px) {
+    .footer__text {
+        padding-left: 35px;
+    }
+}
+
+@media screen and (max-width:620px) {
+    .footer {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .footer__text {
+        padding-left: 19px;
+    }
 }

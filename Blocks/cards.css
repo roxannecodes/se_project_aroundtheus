@@ -1,9 +1,26 @@
-.cards__list {
-    display: grid;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 20px 17px;
-}
+       .cards {
+           font-family: "Helvetica Neue", Arial, sans-serif;
+           padding: 51px 0 67px;
+       }
+       
+       .cards__list {
+           max-width: 880px;
+           display: grid;
+           margin: 0;
+           padding: 0;
+           list-style-type: none;
+           grid-template-columns: repeat(auto-fit, 282px);
+           grid-gap: 20px 17px;
+       }
+       
+       @media screen and (max-width:885px) {
+           .cards__list {
+               justify-content: center;
+           }
+       }
+       
+       @media screen and (max-width:620px) {
+           .cards {
+               padding: 36px 0 48px;
+           }
+       }
