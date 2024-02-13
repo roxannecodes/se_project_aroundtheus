@@ -13,7 +13,7 @@ This was the third project for my program in software enginnering at TripleTen b
 
 Time to complete: 25-30 hrs (across 6 days)
 
- **👉[  Live Demo]( https://www.roxannecodes.github.io/project-3-aroundtheus/)**
+ **👉[  Live Demo]( https://roxannecodes.github.io/Project-3-around_the_US/)**
 
   
 ## Skills & Technologies
