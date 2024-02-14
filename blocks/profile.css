@@ -16,7 +16,7 @@
             display: grid;
             grid-template-areas: "name button" "description description";
             grid-gap: 7px 18px;
-            margin: 22px 165px 21px 30px;
+            margin: 22px auto 21px 30px;
             padding: 0;
             width: 415px;
         }
