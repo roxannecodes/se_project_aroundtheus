@@ -55,6 +55,6 @@ In this [**Video**]( https://www.loom.com/share/116257335dac476888dbb0119c9a8c25
  
 
   ## Screen Shot
- ![Around the World US](./Images/Screen-Shot.png)
+ ![Around the World US](./Images/screen-shot.png)
 
 
