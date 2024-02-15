@@ -22,8 +22,9 @@
     .footer {
         font-size: 14px;
         line-height: 17px;
+        width: 282px;
     }
     .footer__text {
-        padding-left: 19px;
+        padding-left: 0px;
     }
 }
