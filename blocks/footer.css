@@ -19,12 +19,9 @@
 }
 
 @media screen and (max-width:620px) {
-    .footer {
+    .footer__text {
+        padding-left: 19px;
         font-size: 14px;
         line-height: 17px;
-        width: 282px;
-    }
-    .footer__text {
-        padding-left: 0px;
     }
 }
