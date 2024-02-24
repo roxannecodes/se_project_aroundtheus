@@ -1,0 +1,143 @@
+
+
+.modal {
+    display:flex;
+    background-color: rgba(0, 0, 0, 0.5) ;
+    position: fixed;
+    top:0;
+    left:0;
+    bottom: 0;
+    right:0;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal_opened {
+    display: flex;
+}
+
+.modal__container {
+    background-color:#FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px 0px #00000026;
+    border: 1px;
+    width: 430px;
+    height: 330px; 
+    position: relative;
+}
+
+.modal__heading {
+    padding: 34px 64px 54px 36px;
+    font-family: "Inter", Arial, sans-serif;
+    color: #000000;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+    width:330px;
+    margin:0;
+}
+
+.modal__form {
+    background-color:#FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal__input{
+    width:358px;
+    border: none;
+    border-bottom:1px solid rgba(0, 0, 0, 0.2);
+    padding: 0 0 13px;
+}
+
+.modal__input::placeholder {
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    padding:0;
+    color:#000000;
+}
+
+.modal__name {
+    margin: 0 0 30px;
+}
+
+.modal__description {
+    margin: 0 0 35px;
+}
+
+.modal__save-button {
+    width:358px;
+    height:50px;
+    border-radius: 2px;
+    border: none;
+    padding: 0;
+    background-color:#000000;
+    color: #FFFFFF;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: center;
+}
+
+.modal__close-button {
+    height:40px;
+    width:40px;
+    position:absolute;
+    left:431px;
+    bottom:336px;
+    border: none;
+    background-color: transparent;
+    background-image: url(../images/modal-close-button.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.modal__close-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.modal__save-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@media screen and (max-width:620px) {
+.modal__container {
+    width:282px;
+    height:322px;
+}
+
+.modal__heading {
+    font-size: 18px;
+    line-height: 22px;
+    padding:25px 22px 75px;
+}
+
+.modal__input {
+    width:238px;
+}
+
+.modal__description {
+    margin:0 0 45px;
+}
+
+.modal__save-button {
+    width:238px;
+    height:46px;
+    font-size:14px;
+    line-height: 17px;
+
+}
+
+.modal__close-button {
+    width:26px;
+    height: 26px;
+    left:246px;
+}
+}
