@@ -1,50 +1,50 @@
-        .card {
-            background-color: #fff;
-            color: black;
-            display: flex;
-            flex-direction: column;
-            border-radius: 10px;
-            overflow: hidden;
-            justify-content: center;
-        }
-        
-        .card__image {
-            width: 282px;
-            height: 282px;
-        }
-        
-        .card__description {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 25px 20px;
-        }
-        
-        .card__title {
-            color: #000;
-            font-family: "Inter", Arial, sans-serif;
-            font-size: 24px;
-            font-weight: 900;
-            line-height: 29px;
-            margin: 0;
-            text-wrap: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-        
-        .card__like-button {
-            background-image: url(../images/Like.svg);
-            background-color: transparent;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none;
-            min-width: 21px;
-            height: 18px;
-            margin: 0;
-            transition: opacity 0.3s linear;
-        }
-        
-        .card__like-button:hover {
-            opacity: 0.5;
-            cursor: pointer;
-        }
+.card {
+  background-color: #fff;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.card__image {
+  width: 282px;
+  height: 282px;
+}
+
+.card__description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 20px;
+}
+
+.card__title {
+  color: #000;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  margin: 0;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card__like-button {
+  background-image: url(../images/Like.svg);
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  min-width: 21px;
+  height: 18px;
+  margin: 0;
+  transition: opacity 0.3s linear;
+}
+
+.card__like-button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
