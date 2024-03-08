@@ -1,3 +1,5 @@
+//TODO: store initial cards (stage 2 )
+
 let initialCards = [
   {
     name: "Yosemite Valley",
@@ -29,3 +31,18 @@ for (let i = 0; i < initialCards.length; i++) {
   console.log(initialCards[i].name);
   console.log(initialCards[i].link, "\n");
 }
+
+// TODO: Handle modal open and close events (stage 3)
+let modal = document.querySelector(".modal");
+
+let editButton = document.querySelector(".profile__edit-button");
+
+editButton.addEventListener("click", () => {
+  modal.classList.add("modal_opened");
+});
+
+let modalCloseButton = document.querySelector(".modal__close-button");
+
+modalCloseButton.addEventListener("click", () => {
+  modal.classList.remove("modal_opened");
+});
