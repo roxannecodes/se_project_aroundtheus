@@ -1,4 +1,4 @@
-//TODO: store initial cards (stage 2 )
+//TODO: store initial cards info in an array of objects (stage 1 )
 
 let initialCards = [
   {
@@ -27,22 +27,46 @@ let initialCards = [
   },
 ];
 
+//TODO: (stage 2 & 4)
+
 for (let i = 0; i < initialCards.length; i++) {
   console.log(initialCards[i].name);
   console.log(initialCards[i].link, "\n");
 }
 
 // TODO: Handle modal open and close events (stage 3)
+
 let modal = document.querySelector(".modal");
+let profileName = document.querySelector(".profile__name");
+let profileDescription = document.querySelector(".profile__description");
+let inputName = modal.querySelector(".modal__name");
+let inputDescription = modal.querySelector(".modal__description");
 
-let editButton = document.querySelector(".profile__edit-button");
-
-editButton.addEventListener("click", () => {
+let modalOpenButton = document.querySelector(".profile__edit-button");
+modalOpenButton.addEventListener("click", () => {
   modal.classList.add("modal_opened");
-});
+}
+);
 
-let modalCloseButton = document.querySelector(".modal__close-button");
-
+let modalCloseButton = modal.querySelector(".modal__close-button");
 modalCloseButton.addEventListener("click", () => {
   modal.classList.remove("modal_opened");
-});
+}
+);
+
+//TODO: Handle submit button events (stage 4-final) 
+
+let modalSubmitButton = modal.querySelector(".modal__save-button");
+modalSubmitButton.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  profileName.textContent = inputName.value;
+  profileDescription.textContent = inputDescription.value;
+  modal.classList.remove("modal_opened");
+}
+);
+
+  
+    
+  
+  
+
