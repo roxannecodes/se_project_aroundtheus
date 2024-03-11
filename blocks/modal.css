@@ -44,6 +44,7 @@
   align-items: center;
 }
 .modal__input {
+  margin: 0 0 35px;
   width: 358px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -53,14 +54,6 @@
   font-weight: 400;
   line-height: 17px;
   color: #000000;
-}
-
-#profile-name {
-  margin: 0 0 30px;
-}
-
-#profile-description {
-  margin: 0 0 35px;
 }
 
 .modal__save-button {
