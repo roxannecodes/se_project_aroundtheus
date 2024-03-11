@@ -47,7 +47,7 @@ modalOpenButton.addEventListener("click", () => {
 
 let modalCloseButton = modal.querySelector(".modal__close-button");
 modalCloseButton.addEventListener("click", () => {
-  modal.classList.remove("modal_opened");
+  closeProfileModal(); 
 });
 
 //TODO: Handle submit button events
@@ -57,8 +57,13 @@ modalForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputDescription.value;
-  modal.classList.remove("modal_opened");
+    closeProfileModal(); 
 });
+
+function closeProfileModal() {
+  modal.classList.remove("modal_opened");
+}
+
 
 //TODO: Clone card template and fill element with user data
 
