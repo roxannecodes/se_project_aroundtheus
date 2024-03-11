@@ -1,5 +1,5 @@
 .modal {
-  visibility:hidden;
+  visibility: hidden;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -55,11 +55,11 @@
   color: #000000;
 }
 
-.modal__name {
+#profile-name {
   margin: 0 0 30px;
 }
 
-.modal__description {
+#profile-description {
   margin: 0 0 35px;
 }
 
