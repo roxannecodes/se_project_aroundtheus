@@ -1,7 +1,7 @@
 
 
 //TODO: store initial cards' data into an array of objects 
-const initialCards = [
+const cardData = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -31,10 +31,10 @@ const initialCards = [
 // TODO: Handle modal open and close events
 
 const modal = document.querySelector(".modal");
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-const inputName = modal.querySelector("#profile-name");
-const inputDescription = modal.querySelector("#profile-description");
+let profileName = document.querySelector(".profile__name");
+let profileDescription = document.querySelector(".profile__description");
+let inputName = modal.querySelector("#profile-name");
+let inputDescription = modal.querySelector("#profile-description");
 
 
 
@@ -67,8 +67,6 @@ function closeProfileModal() {
 
 //TODO: Clone card template and fill element with user data
 
-const cardsContainer = document.querySelector(".cards__list");
-
 function getCardElement(data) {
   const cardTemplate = document.querySelector("#card-template")
     .content.querySelector(".card");
@@ -84,7 +82,9 @@ function getCardElement(data) {
 
 //TODO: Iterate over cards to render grid
 
-for (let i = 0; i < initialCards.length; i++) {
-  const card = getCardElement(initialCards[i]);
+const cardsContainer = document.querySelector(".cards__list");
+
+for (let i = 0; i < cardData.length; i++) {
+  let card = getCardElement(cardData[i]);
   cardsContainer.append(card);
 }
