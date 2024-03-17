@@ -39,21 +39,21 @@ let inputDescription = modal.querySelector("#profile-description");
 
 
 const modalOpenButton = document.querySelector(".profile__edit-button");
-modalOpenButton.addEventListener("click", () => {
+modalOpenButton.addEventListener("click", function () {
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
   modal.classList.add("modal_opened");
 });
 
 const modalCloseButton = modal.querySelector(".modal__close-button");
-modalCloseButton.addEventListener("click", () => {
+modalCloseButton.addEventListener("click", function () {
   closeProfileModal(); 
 });
 
 //TODO: Handle submit button events
 
 const modalForm = document.querySelector(".modal__form");
-modalForm.addEventListener("submit", (evt) => {
+modalForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputDescription.value;
