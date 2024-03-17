@@ -60,9 +60,9 @@ modalForm.addEventListener("submit", function (evt) {
     closeProfileModal(); 
 });
 
-function closeProfileModal() {
+const closeProfileModal= () =>
   modal.classList.remove("modal_opened");
-}
+
 
 
 //TODO: Clone card template and fill element with user data
