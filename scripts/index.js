@@ -37,8 +37,8 @@ let inputName = modal.querySelector("#profile-name");
 let inputDescription = modal.querySelector("#profile-description");
 
 
-
 const modalOpenButton = document.querySelector(".profile__edit-button");
+
 modalOpenButton.addEventListener("click", function () {
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
@@ -46,6 +46,7 @@ modalOpenButton.addEventListener("click", function () {
 });
 
 const modalCloseButton = modal.querySelector(".modal__close-button");
+
 modalCloseButton.addEventListener("click", function () {
   closeProfileModal(); 
 });
@@ -53,6 +54,7 @@ modalCloseButton.addEventListener("click", function () {
 //TODO: Handle submit button events
 
 const modalForm = document.querySelector(".modal__form");
+
 modalForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
@@ -60,9 +62,8 @@ modalForm.addEventListener("submit", function (evt) {
     closeProfileModal(); 
 });
 
-const closeProfileModal= () =>
+const closeProfileModal= () => 
   modal.classList.remove("modal_opened");
-
 
 
 //TODO: Clone card template and fill element with user data
@@ -85,6 +86,6 @@ function getCardElement(data) {
 const cardsContainer = document.querySelector(".cards__list");
 
 for (let i = 0; i < cardData.length; i++) {
-  let card = getCardElement(cardData[i]);
+  const card = getCardElement(cardData[i]);
   cardsContainer.append(card);
 }
