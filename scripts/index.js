@@ -1,4 +1,49 @@
 
+// TODO: Handle modal events and changes in user profile information 
+
+//TODO: Declare DOM variables
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__description");
+
+const modal = document.querySelector(".modal");
+const inputName = modal.querySelector("#profile-name");
+const inputDescription = modal.querySelector("#profile-description");
+
+//TODO: Handle opening modal
+const modalOpenButton = document.querySelector(".profile__edit-button");
+
+modalOpenButton.addEventListener("click", openModal);
+
+function openModal () {
+  inputName.value = profileName.textContent;
+  inputDescription.value = profileDescription.textContent;
+  modal.classList.add("modal_opened");
+}
+
+//TODO: Handle closing modal 
+const modalCloseButton = modal.querySelector(".modal__close-button");
+
+modalCloseButton.addEventListener("click", closeModal);
+
+function closeModal() {
+ modal.classList.remove("modal_opened");
+}
+
+
+//TODO: Handle submitting modal form
+
+const modalForm = document.querySelector(".modal__form");
+
+modalForm.addEventListener("submit", submitModal);
+
+ function submitModal (e) {
+  e.preventDefault();
+  profileName.textContent = inputName.value;
+  profileDescription.textContent = inputDescription.value;
+    closeModal(); 
+}
+
+
 
 //TODO: store initial cards' data into an array of objects 
 const cardData = [
@@ -28,44 +73,6 @@ const cardData = [
   },
 ];
 
-// TODO: Handle modal open and close events
-
-const modal = document.querySelector(".modal");
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-const inputName = modal.querySelector("#profile-name");
-const inputDescription = modal.querySelector("#profile-description");
-
-
-const modalOpenButton = document.querySelector(".profile__edit-button");
-
-modalOpenButton.addEventListener("click", function (evt) {
-  inputName.value = profileName.textContent;
-  inputDescription.value = profileDescription.textContent;
-  modal.classList.add("modal_opened");
-});
-
-const modalCloseButton = modal.querySelector(".modal__close-button");
-
-modalCloseButton.addEventListener("click", function (evt) {
-  closeProfileModal(); 
-});
-
-const closeProfileModal = () => modal.classList.remove("modal_opened");
-
-
-//TODO: Handle submit button events
-
-const modalForm = document.querySelector(".modal__form");
-
-modalForm.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileDescription.textContent = inputDescription.value;
-    closeProfileModal(); 
-});
-
-
 
 //TODO: Clone card template and fill element with user data
 
@@ -90,3 +97,7 @@ for (let i = 0; i < cardData.length; i++) {
   const card = getCardElement(cardData[i]);
   cardsContainer.append(card);
 }
+
+
+
+
