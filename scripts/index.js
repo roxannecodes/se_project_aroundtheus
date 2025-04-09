@@ -2,8 +2,9 @@
 // TODO: Handle modal events and changes in user profile information 
 
 //TODO: Declare DOM variables
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
+const profileInfo=document.querySelector(".profile__info")
+const profileName = profileInfo.querySelector(".profile__name");
+const profileDescription = profileInfo.querySelector(".profile__description");
 
 const modal = document.querySelector(".modal");
 const inputName = modal.querySelector("#profile-name");
@@ -15,9 +16,10 @@ const modalOpenButton = document.querySelector(".profile__edit-button");
 modalOpenButton.addEventListener("click", openModal);
 
 function openModal () {
+  modal.classList.add("modal_opened");
+
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
-  modal.classList.add("modal_opened");
 }
 
 //TODO: Handle closing modal 
@@ -30,7 +32,7 @@ function closeModal() {
 }
 
 
-//TODO: Handle submitting modal form
+//TODO: Handle submitting modal form (changes to user profile info)
 
 const modalForm = document.querySelector(".modal__form");
 
@@ -42,7 +44,6 @@ modalForm.addEventListener("submit", submitModal);
   profileDescription.textContent = inputDescription.value;
     closeModal(); 
 }
-
 
 
 //TODO: store initial cards' data into an array of objects 
@@ -74,11 +75,23 @@ const cardData = [
 ];
 
 
-//TODO: Clone card template and fill element with user data
+//TODO: Iterate over cards to render above in grid 
+// adding new cards (made with templates) to the DOM tree
 
-function getCardElement(data) {
+
+for (let i = 0; i < cardData.length; i++) {
+  const cardsContainer = document.querySelector(".cards__list");
+  const card = createCard(cardData[i]);
+  cardsContainer.append(card);
+}
+
+
+//TODO:  making a new card by copying template in html via JS
+
+// Create a copy of new card with template clone
+function createCard (data) {
   const cardTemplate = document.querySelector("#card-template")
-    .content.querySelector(".card");
+    .content;
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
@@ -88,16 +101,5 @@ function getCardElement(data) {
   cardTitle.textContent = data.name;
   return cardElement;
 }
-
-//TODO: Iterate over cards to render grid
-
-const cardsContainer = document.querySelector(".cards__list");
-
-for (let i = 0; i < cardData.length; i++) {
-  const card = getCardElement(cardData[i]);
-  cardsContainer.append(card);
-}
-
-
 
 
