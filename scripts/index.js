@@ -1,45 +1,45 @@
 
-// TODO: Handle modal events and changes in user profile information 
+// TODO: Handle profile modal events/changes in profile info
 
 //TODO: Declare DOM variables
 const profileInfo=document.querySelector(".profile__info")
 const profileName = profileInfo.querySelector(".profile__name");
 const profileDescription = profileInfo.querySelector(".profile__description");
 
-const modal = document.querySelector(".modal");
-const inputName = modal.querySelector("#profile-name");
-const inputDescription = modal.querySelector("#profile-description");
+const profileModal = document.querySelector("#profile-modal");
+const profileNameInput = document.querySelector("#profile-name");
+const profileDescriptionInput = document.querySelector("#profile-description");
 
-//TODO: Handle opening modal
+//TODO: Handle opening profile modal
 
 const modalOpenButton = document.querySelector(".profile__edit-button");
 modalOpenButton.addEventListener("click", openModal);
 
 function openModal () {
-  modal.classList.add("modal_opened");
+  profileModal.classList.add("modal_opened");
 
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
 }
 
-//TODO: Handle closing modal 
-const modalCloseButton = modal.querySelector(".modal__close-button");
+//TODO: Handle closing profile modal 
+const modalCloseButton = document.querySelector(".modal__close-button");
 modalCloseButton.addEventListener("click", closeModal);
 
 function closeModal() {
- modal.classList.remove("modal_opened");
+ profileModal.classList.remove("modal_opened");
 }
 
 
-//TODO: Handle submitting modal form (changes to user profile info)
+//TODO: Handle submitting profile modal form 
 
 const modalForm = document.querySelector(".modal__form");
 modalForm.addEventListener("submit", submitModal);
 
  function submitModal (e) {
   e.preventDefault();
-  profileName.textContent = inputName.value;
-  profileDescription.textContent = inputDescription.value;
+  profileName.textContent = profileNameInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
     closeModal(); 
 }
 
@@ -73,7 +73,7 @@ const cardData = [
 ];
 
 
-//TODO: Iterate over cards to render initial grid items
+//TODO: Iterate over cards to render initial grid items via a for-loop
 
 
 // for (let i = 0; i < cardData.length; i++) {
@@ -81,6 +81,8 @@ const cardData = [
 //   const card = createCard(cardData[i]);
 //   cardsContainer.append(card);
 // }
+
+//TODO:  Rendering cards via the arr.forEach() method
 
 cardData.forEach((data) => {
   const cardsContainer = document.querySelector(".cards__list");
@@ -105,4 +107,9 @@ function createCard (data) {
   return cardElement;
  
 }
+
+
+//TODO: handle adding card modal
+
+
 
