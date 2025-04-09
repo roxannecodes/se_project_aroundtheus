@@ -11,8 +11,8 @@ const inputName = modal.querySelector("#profile-name");
 const inputDescription = modal.querySelector("#profile-description");
 
 //TODO: Handle opening modal
-const modalOpenButton = document.querySelector(".profile__edit-button");
 
+const modalOpenButton = document.querySelector(".profile__edit-button");
 modalOpenButton.addEventListener("click", openModal);
 
 function openModal () {
@@ -24,7 +24,6 @@ function openModal () {
 
 //TODO: Handle closing modal 
 const modalCloseButton = modal.querySelector(".modal__close-button");
-
 modalCloseButton.addEventListener("click", closeModal);
 
 function closeModal() {
@@ -35,7 +34,6 @@ function closeModal() {
 //TODO: Handle submitting modal form (changes to user profile info)
 
 const modalForm = document.querySelector(".modal__form");
-
 modalForm.addEventListener("submit", submitModal);
 
  function submitModal (e) {
@@ -75,7 +73,7 @@ const cardData = [
 ];
 
 
-//TODO: Iterate over cards to render git grid 
+//TODO: Iterate over cards to render initial grid items
 // adding new cards (made with templates) to the DOM tree
 
 
@@ -88,7 +86,6 @@ for (let i = 0; i < cardData.length; i++) {
 
 //TODO:  making a new card by copying template in html via JS
 
-// Create a copy of new card with template clone
 function createCard (data) {
   const cardTemplate = document.querySelector("#card-template")
     .content;
@@ -100,10 +97,9 @@ function createCard (data) {
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
   return cardElement;
-  
-   const cardsContainer = document.querySelector(".cards__list");
-   cardsContainer.append(cardElement);
-  
+ 
 }
 
 
+   const cardsContainer = document.querySelector(".cards__list");
+   cardsContainer.append(createCard);
