@@ -75,7 +75,7 @@ const cardData = [
 ];
 
 
-//TODO: Iterate over cards to render above in grid 
+//TODO: Iterate over cards to render git grid 
 // adding new cards (made with templates) to the DOM tree
 
 
@@ -100,6 +100,10 @@ function createCard (data) {
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
   return cardElement;
+  
+   const cardsContainer = document.querySelector(".cards__list");
+   cardsContainer.append(cardElement);
+  
 }
 
 
