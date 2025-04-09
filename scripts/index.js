@@ -74,14 +74,20 @@ const cardData = [
 
 
 //TODO: Iterate over cards to render initial grid items
-// adding new cards (made with templates) to the DOM tree
 
 
-for (let i = 0; i < cardData.length; i++) {
+// for (let i = 0; i < cardData.length; i++) {
+//   const cardsContainer = document.querySelector(".cards__list");
+//   const card = createCard(cardData[i]);
+//   cardsContainer.append(card);
+// }
+
+cardData.forEach((data) => {
   const cardsContainer = document.querySelector(".cards__list");
-  const card = createCard(cardData[i]);
+  const card = createCard(data);
   cardsContainer.append(card);
-}
+});
+
 
 
 //TODO:  making a new card by copying template in html via JS
@@ -100,6 +106,3 @@ function createCard (data) {
  
 }
 
-
-   const cardsContainer = document.querySelector(".cards__list");
-   cardsContainer.append(createCard);
