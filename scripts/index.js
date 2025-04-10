@@ -1,8 +1,6 @@
 
 // TODO: Handle profile modal events/changes in profile info
-
-//TODO: Declare DOM variables
-const profileInfo=document.querySelector(".profile__info")
+const profileInfo = document.querySelector(".profile__info");
 const profileName = profileInfo.querySelector(".profile__name");
 const profileDescription = profileInfo.querySelector(".profile__description");
 
@@ -12,35 +10,32 @@ const profileDescriptionInput = document.querySelector("#profile-description");
 
 //TODO: Handle opening profile modal
 
-const modalOpenButton = document.querySelector(".profile__edit-button");
-modalOpenButton.addEventListener("click", openModal);
+const profileEditButton = document.querySelector(".profile__edit-button");
+profileEditButton.addEventListener("click", function () {
+    profileModal.classList.add("modal_opened");
+});
 
-function openModal () {
-  profileModal.classList.add("modal_opened");
-
-  inputName.value = profileName.textContent;
-  inputDescription.value = profileDescription.textContent;
-}
 
 //TODO: Handle closing profile modal 
-const modalCloseButton = document.querySelector(".modal__close-button");
-modalCloseButton.addEventListener("click", closeModal);
 
-function closeModal() {
- profileModal.classList.remove("modal_opened");
+const profileCloseButton = document.querySelector("#profile-close");
+profileCloseButton.addEventListener("click", closeProfileModal);
+
+function closeProfileModal() {
+  profileModal.classList.remove("modal_opened");
 }
-
 
 //TODO: Handle submitting profile modal form 
 
-const modalForm = document.querySelector(".modal__form");
-modalForm.addEventListener("submit", submitModal);
 
- function submitModal (e) {
-  e.preventDefault();
+const profileModalForm = document.querySelector("#profile-form");
+profileModalForm.addEventListener("submit", submitProfileModal);
+
+ function submitProfileModal (evt) {
+  evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-    closeModal(); 
+    closeProfileModal(); 
 }
 
 
@@ -73,16 +68,8 @@ const cardData = [
 ];
 
 
-//TODO: Iterate over cards to render initial grid items via a for-loop
 
-
-// for (let i = 0; i < cardData.length; i++) {
-//   const cardsContainer = document.querySelector(".cards__list");
-//   const card = createCard(cardData[i]);
-//   cardsContainer.append(card);
-// }
-
-//TODO:  Rendering cards via the arr.forEach() method
+//TODO:  Rendering cards above via the arr.forEach() method
 
 cardData.forEach((data) => {
   const cardsContainer = document.querySelector(".cards__list");
@@ -101,15 +88,48 @@ function createCard (data) {
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
 
+  cardTitle.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
-  cardTitle.textContent = data.name;
   return cardElement;
- 
 }
 
 
-//TODO: handle adding card modal
+//TODO: handle card modal events
+
+const cardModal = document.querySelector("#card-modal");
+
+// OPEN MODAL
+const addImageButton = document.querySelector(".profile__add-button");
+addImageButton.addEventListener("click", function () {
+  cardModal.classList.add("modal_opened");
+});
 
 
+//CLOSE MODAL
+const cardcloselButton = document.querySelector("#card-close");
+cardcloselButton.addEventListener("click", closeCardModal);
+
+function closeCardModal() {
+  cardModal.classList.remove("modal_opened");
+}
+
+//TODO: SUBMIT MODAL FORM
+
+const cardTitleInput = document.querySelector("#card-title");
+const cardImageInput = document.querySelector("#card-image");
+
+const cardModalForm = document.querySelector("#card-form");
+cardModalForm.addEventListener("submit", submitCardModal);
+
+function submitCardModal() {
+
+  const data = { name: "", link: "" };
+  data.name = cardTitleInput.value;
+  data.link = cardImageInput.value;
+  const card = createCard(data);
+  const cardsContainer = document.querySelector(".cards__list");
+  cardsContainer.prepend(card);
+  closeCardModal();
+}
 
