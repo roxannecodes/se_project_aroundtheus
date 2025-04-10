@@ -1,5 +1,6 @@
 
 // TODO: Handle profile modal events/changes in profile info
+
 const profileInfo = document.querySelector(".profile__info");
 const profileName = profileInfo.querySelector(".profile__name");
 const profileDescription = profileInfo.querySelector(".profile__description");
@@ -26,7 +27,6 @@ function closeProfileModal() {
 }
 
 //TODO: Handle submitting profile modal form 
-
 
 const profileModalForm = document.querySelector("#profile-form");
 profileModalForm.addEventListener("submit", submitProfileModal);
@@ -77,8 +77,6 @@ cardData.forEach((data) => {
   cardsContainer.append(card);
 });
 
-
-
 //TODO:  making a new card by copying template in html via JS
 
 function createCard (data) {
@@ -94,7 +92,6 @@ function createCard (data) {
   return cardElement;
 }
 
-
 //TODO: handle card modal events
 
 const cardModal = document.querySelector("#card-modal");
@@ -105,28 +102,24 @@ addImageButton.addEventListener("click", function () {
   cardModal.classList.add("modal_opened");
 });
 
-
 //CLOSE MODAL
 const cardcloselButton = document.querySelector("#card-close");
 cardcloselButton.addEventListener("click", closeCardModal);
-
 function closeCardModal() {
   cardModal.classList.remove("modal_opened");
 }
 
-//TODO: SUBMIT MODAL FORM
-
+// SUBMIT MODAL FORM
 const cardTitleInput = document.querySelector("#card-title");
 const cardImageInput = document.querySelector("#card-image");
-
 const cardModalForm = document.querySelector("#card-form");
+
 cardModalForm.addEventListener("submit", submitCardModal);
-
 function submitCardModal() {
-
   const data = { name: "", link: "" };
-  data.name = cardTitleInput.value;
-  data.link = cardImageInput.value;
+  cardTitleInput.value = data.name;
+  cardImageInput.value = data.link;
+
   const card = createCard(data);
   const cardsContainer = document.querySelector(".cards__list");
   cardsContainer.prepend(card);
