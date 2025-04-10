@@ -86,6 +86,12 @@ function createCard (data) {
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
 
+  // Like-button feature
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active")
+  });
+
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
@@ -98,7 +104,7 @@ const cardModal = document.querySelector("#card-modal");
 
 // OPEN MODAL
 const addImageButton = document.querySelector(".profile__add-button");
-addImageButton.addEventListener("click", function () {
+addImageButton.addEventListener("click", () => {
   cardModal.classList.add("modal_opened");
 });
 
@@ -132,5 +138,4 @@ function submitCardModal(evt) {
 
 
 
-//TODO: Code the card ** Like button **
 
