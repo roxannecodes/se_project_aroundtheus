@@ -115,14 +115,22 @@ const cardImageInput = document.querySelector("#card-image");
 const cardModalForm = document.querySelector("#card-form");
 
 cardModalForm.addEventListener("submit", submitCardModal);
-function submitCardModal() {
-  const data = { name: "", link: "" };
-  cardTitleInput.value = data.name;
-  cardImageInput.value = data.link;
+
+function submitCardModal(evt) {
+  evt.preventDefault(); 
+
+  const data = {
+    name: cardTitleInput.value,
+    link: cardImageInput.value,
+  }; 
 
   const card = createCard(data);
   const cardsContainer = document.querySelector(".cards__list");
   cardsContainer.prepend(card);
   closeCardModal();
 }
+
+
+
+//TODO: Code the card ** Like button **
 
