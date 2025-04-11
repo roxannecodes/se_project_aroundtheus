@@ -80,8 +80,8 @@ cardData.forEach((data) => {
 //TODO:  making a new card by copying template in html via JS
 
 function createCard (data) {
-  const cardTemplate = document.querySelector("#card-template")
-    .content;
+  const cardTemplate = document
+    .querySelector("#card-template").content.querySelector(".card");
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
@@ -91,6 +91,12 @@ function createCard (data) {
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active")
   });
+
+  //delete-button feature **
+ const deleteButton = cardElement.querySelector(".card__delete-button");
+ deleteButton.addEventListener("click", () => {
+   cardElement.remove();
+});
 
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
@@ -119,12 +125,10 @@ function closeCardModal() {
 const cardTitleInput = document.querySelector("#card-title");
 const cardImageInput = document.querySelector("#card-image");
 const cardModalForm = document.querySelector("#card-form");
-
-cardModalForm.addEventListener("submit", submitCardModal);
-
+  cardModalForm.addEventListener("submit", submitCardModal);
+  
 function submitCardModal(evt) {
   evt.preventDefault(); 
-
   const data = {
     name: cardTitleInput.value,
     link: cardImageInput.value,
@@ -136,6 +140,17 @@ function submitCardModal(evt) {
   closeCardModal();
 }
 
+// TODO: Like-button feature  *** why doesnt this work???
+const likeButtons = cardElement.querySelectorAll(".card__like-button");
+  
+likeButtons.forEach((likeButton) => {
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+});
 
+  
+
+// TODO: Delete-button feature **** PENDING
 
 
