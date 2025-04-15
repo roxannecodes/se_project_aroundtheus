@@ -9,22 +9,28 @@ const profileModal = document.querySelector("#profile-modal");
 const profileNameInput = document.querySelector("#profile-name");
 const profileDescriptionInput = document.querySelector("#profile-description");
 
+ function openModal(modal) {
+   modal.classList.add("modal_opened");
+ }
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+ }
+
 //TODO: Handle opening profile modal
 
 const profileEditButton = document.querySelector(".profile__edit-button");
-profileEditButton.addEventListener("click", function () {
-    profileModal.classList.add("modal_opened");
+profileEditButton.addEventListener("click", () => {
+  openModal(profileModal)
 });
-
 
 //TODO: Handle closing profile modal 
 
 const profileCloseButton = document.querySelector("#profile-close");
-profileCloseButton.addEventListener("click", closeProfileModal);
+profileCloseButton.addEventListener("click", () => {
+  closeModal(profileModal);
+});
 
-function closeProfileModal() {
-  profileModal.classList.remove("modal_opened");
-}
 
 //TODO: Handle submitting profile modal form 
 
@@ -35,7 +41,7 @@ profileModalForm.addEventListener("submit", submitProfileModal);
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-    closeProfileModal(); 
+   closeModal(profileModal);
 }
 
 
@@ -68,7 +74,6 @@ const cardData = [
 ];
 
 
-
 //TODO:  Rendering cards above via the arr.forEach() method
 
 cardData.forEach((data) => {
@@ -81,76 +86,78 @@ cardData.forEach((data) => {
 
 function createCard (data) {
   const cardTemplate = document
-    .querySelector("#card-template").content.querySelector(".card");
+    .querySelector("#card-template")
+    .content.querySelector(".card");
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector(".card__image");
+
   const cardTitle = cardElement.querySelector(".card__title");
-
-  // Like-button feature
   const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active")
-  });
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  const cardImage = cardElement.querySelector(".card__image");
 
-  //delete-button feature **
- const deleteButton = cardElement.querySelector(".card__delete-button");
- deleteButton.addEventListener("click", () => {
-   cardElement.remove();
-});
+  const previewModal = document.querySelector("#preview-modal");
+  const previewModalImage = previewModal.querySelector(".modal__image");
+  const previewModalCaption = previewModal.querySelector(".modal__caption");
+  const previewModalCloseBtn = previewModal.querySelector(
+    ".modal__close-button"
+  );
 
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
+
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  deleteButton.addEventListener("click", () => {
+     cardElement.remove();
+  });
+
+  cardImage.addEventListener("click", () => {
+    openModal(previewModal);
+    previewModalImage.src = data.link;
+    previewModalImage.alt = `Enlarged view of ${data.name}`;
+    previewModalCaption.textContent = data.name;
+  });
+  
+   previewModalCloseBtn.addEventListener("click", () => {
+     closeModal(previewModal);
+   });
+
+
   return cardElement;
 }
+
 
 //TODO: handle card modal events
 
 const cardModal = document.querySelector("#card-modal");
-
-// OPEN MODAL
-const addImageButton = document.querySelector(".profile__add-button");
-addImageButton.addEventListener("click", () => {
-  cardModal.classList.add("modal_opened");
-});
-
-//CLOSE MODAL
-const cardcloselButton = document.querySelector("#card-close");
-cardcloselButton.addEventListener("click", closeCardModal);
-function closeCardModal() {
-  cardModal.classList.remove("modal_opened");
-}
-
-// SUBMIT MODAL FORM
 const cardTitleInput = document.querySelector("#card-title");
 const cardImageInput = document.querySelector("#card-image");
 const cardModalForm = document.querySelector("#card-form");
-  cardModalForm.addEventListener("submit", submitCardModal);
-  
-function submitCardModal(evt) {
-  evt.preventDefault(); 
-  const data = {
-    name: cardTitleInput.value,
-    link: cardImageInput.value,
-  }; 
 
-  const card = createCard(data);
-  const cardsContainer = document.querySelector(".cards__list");
-  cardsContainer.prepend(card);
-  closeCardModal();
-}
-
-// TODO: Like-button feature  *** why doesnt this work???
-const likeButtons = cardElement.querySelectorAll(".card__like-button");
-  
-likeButtons.forEach((likeButton) => {
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+const addImageButton = document.querySelector(".profile__add-button");
+addImageButton.addEventListener("click", () => {
+ openModal(cardModal);
 });
 
+
+cardModalForm.addEventListener("submit", (evt) => {
+   evt.preventDefault();
+    const data = {
+      name: cardTitleInput.value,
+      link: cardImageInput.value,
+  }; 
+    const card = createCard(data);
+    const cardsContainer = document.querySelector(".cards__list");
+    cardsContainer.prepend(card);
+    closeModal(cardModal);
+  });
   
 
-// TODO: Delete-button feature **** PENDING
-
-
+const cardcloselButton = document.querySelector("#card-close");
+cardcloselButton.addEventListener("click", () => {
+  closeModal(cardModal);
+});
