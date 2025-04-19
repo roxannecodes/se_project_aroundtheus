@@ -1,4 +1,3 @@
-
 // TODO: Handle profile modal events/changes in profile info
 
 const profileInfo = document.querySelector(".profile__info");
@@ -9,43 +8,41 @@ const profileModal = document.querySelector("#profile-modal");
 const profileNameInput = document.querySelector("#profile-name");
 const profileDescriptionInput = document.querySelector("#profile-description");
 
- function openModal(modal) {
-   modal.classList.add("modal_opened");
- }
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+}
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
- }
+}
 
 //TODO: Handle opening profile modal
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 profileEditButton.addEventListener("click", () => {
-  openModal(profileModal)
+  openModal(profileModal);
 });
 
-//TODO: Handle closing profile modal 
+//TODO: Handle closing profile modal
 
 const profileCloseButton = document.querySelector("#profile-close");
 profileCloseButton.addEventListener("click", () => {
   closeModal(profileModal);
 });
 
-
-//TODO: Handle submitting profile modal form 
+//TODO: Handle submitting profile modal form
 
 const profileModalForm = document.querySelector("#profile-form");
 profileModalForm.addEventListener("submit", submitProfileModal);
 
- function submitProfileModal (evt) {
+function submitProfileModal(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-   closeModal(profileModal);
+  closeModal(profileModal);
 }
 
-
-//TODO: store initial cards' data into an array of objects 
+//TODO: store initial cards' data into an array of objects
 const cardData = [
   {
     name: "Yosemite Valley",
@@ -73,7 +70,6 @@ const cardData = [
   },
 ];
 
-
 //TODO:  Rendering cards above via the arr.forEach() method
 
 cardData.forEach((data) => {
@@ -84,7 +80,7 @@ cardData.forEach((data) => {
 
 //TODO:  making a new card by copying template in html via JS
 
-function createCard (data) {
+function createCard(data) {
   const cardTemplate = document
     .querySelector("#card-template")
     .content.querySelector(".card");
@@ -99,20 +95,19 @@ function createCard (data) {
   const previewModalImage = previewModal.querySelector(".modal__image");
   const previewModalCaption = previewModal.querySelector(".modal__caption");
   const previewModalCloseBtn = previewModal.querySelector(
-    ".modal__close-button"
+    ".modal__close-button",
   );
 
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
 
-
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
 
   deleteButton.addEventListener("click", () => {
-     cardElement.remove();
+    cardElement.remove();
   });
 
   cardImage.addEventListener("click", () => {
@@ -121,15 +116,13 @@ function createCard (data) {
     previewModalImage.alt = `Enlarged view of ${data.name}`;
     previewModalCaption.textContent = data.name;
   });
-  
-   previewModalCloseBtn.addEventListener("click", () => {
-     closeModal(previewModal);
-   });
 
+  previewModalCloseBtn.addEventListener("click", () => {
+    closeModal(previewModal);
+  });
 
   return cardElement;
 }
-
 
 //TODO: handle card modal events
 
@@ -140,22 +133,20 @@ const cardModalForm = document.querySelector("#card-form");
 
 const addImageButton = document.querySelector(".profile__add-button");
 addImageButton.addEventListener("click", () => {
- openModal(cardModal);
+  openModal(cardModal);
 });
 
-
 cardModalForm.addEventListener("submit", (evt) => {
-   evt.preventDefault();
-    const data = {
-      name: cardTitleInput.value,
-      link: cardImageInput.value,
-  }; 
-    const card = createCard(data);
-    const cardsContainer = document.querySelector(".cards__list");
-    cardsContainer.prepend(card);
-    closeModal(cardModal);
-  });
-  
+  evt.preventDefault();
+  const data = {
+    name: cardTitleInput.value,
+    link: cardImageInput.value,
+  };
+  const card = createCard(data);
+  const cardsContainer = document.querySelector(".cards__list");
+  cardsContainer.prepend(card);
+  closeModal(cardModal);
+});
 
 const cardcloselButton = document.querySelector("#card-close");
 cardcloselButton.addEventListener("click", () => {
