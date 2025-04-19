@@ -72,10 +72,21 @@ const cardData = [
 
 //TODO:  Rendering cards above via the arr.forEach() method
 
+const cardsContainer = document.querySelector(".cards__list");
+
 cardData.forEach((data) => {
-  const cardsContainer = document.querySelector(".cards__list");
   const card = createCard(data);
-  cardsContainer.append(card);
+  cardsContainer.prepend(card);
+});
+
+//TODO:  Declare DOM variables for the card image PREVIEW MODAL
+
+const previewModal = document.querySelector("#preview-modal");
+const previewModalImage = previewModal.querySelector(".modal__image");
+const previewModalCaption = previewModal.querySelector(".modal__caption");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close-button");
+previewModalCloseBtn.addEventListener("click", () => {
+  closeModal(previewModal);
 });
 
 //TODO:  making a new card by copying template in html via JS
@@ -90,13 +101,6 @@ function createCard(data) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
   const cardImage = cardElement.querySelector(".card__image");
-
-  const previewModal = document.querySelector("#preview-modal");
-  const previewModalImage = previewModal.querySelector(".modal__image");
-  const previewModalCaption = previewModal.querySelector(".modal__caption");
-  const previewModalCloseBtn = previewModal.querySelector(
-    ".modal__close-button",
-  );
 
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
@@ -117,14 +121,11 @@ function createCard(data) {
     previewModalCaption.textContent = data.name;
   });
 
-  previewModalCloseBtn.addEventListener("click", () => {
-    closeModal(previewModal);
-  });
-
   return cardElement;
+  
 }
 
-//TODO: handle card modal events
+//TODO: handle creating new card modal events
 
 const cardModal = document.querySelector("#card-modal");
 const cardTitleInput = document.querySelector("#card-title");
