@@ -98,12 +98,12 @@
 }
 
 .modal__input-error {
-  /* visibility: hidden; */
+  visibility: hidden;
   position: absolute;
   font-size: 12px;
   color: #ff0000;
   left: 0px;
-  top: 35px;
+  top: 37px;
 }
 
 .modal__input-error_active {
@@ -126,10 +126,14 @@
 }
 
 .modal__save-button_disabled {
-  background-color: white;
-  color: black;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  color: #000000;
+  opacity: 20%;
 }
 .modal__save-button:hover {
+  cursor: pointer;
+  opacity: 80%;
 }
 .modal__close-button {
   height: 40px;

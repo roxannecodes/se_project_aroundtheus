@@ -48,9 +48,6 @@ Given that this project was made with pure CSS, the buttons are not yet function
 - Adding a card button
 - Like button on individual cards
 
-
-
-
 ## Screen Shot
 
 ![Around the World US](./images/screen-shot.png)
