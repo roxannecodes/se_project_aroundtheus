@@ -1,5 +1,3 @@
-
-
 const showInputError = (formElement, inputElement, errorMessage, options) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   console.log(inputElement.id);
@@ -66,7 +64,7 @@ const enableValidation = (options) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
-     setEventListeners(options, formElement);
+    setEventListeners(options, formElement);
   });
 };
 
@@ -80,7 +78,3 @@ const config = {
 };
 
 enableValidation(config);
-
-
-
-

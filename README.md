@@ -48,11 +48,8 @@ Given that this project was made with pure CSS, the buttons are not yet function
 - Adding a card button
 - Like button on individual cards
 
-## Demo Video
 
-In this [**Video**](https://www.loom.com/share/116257335dac476888dbb0119c9a8c25?sid=6584214d-0da8-435c-a61f-2b38beb52e55) I will be showing you the project after deployment and focusing on demonstrating it's responsiveness to different screen sizes and the methods used to achieve this key effect.
 
-### [ **👉 Project Demo Video**](https://www.loom.com/share/116257335dac476888dbb0119c9a8c25?sid=6584214d-0da8-435c-a61f-2b38beb52e55)
 
 ## Screen Shot
 

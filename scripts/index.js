@@ -152,4 +152,3 @@ const cardcloselButton = document.querySelector("#card-close");
 cardcloselButton.addEventListener("click", () => {
   closeModal(cardModal);
 });
-
