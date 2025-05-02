@@ -10,10 +10,28 @@ const profileDescriptionInput = document.querySelector("#profile-description");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+ document.addEventListener("keydown", handleEscKey);
+
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKey);
+}
+
+function handleOverlayClick(event) {
+  if (event.target.classList.contains("modal")) {
+    closeModal(event.target);
+  }
+}
+
+function handleEscKey(event) {
+  if (event.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened");
+    if (openModal) {
+      closeModal(openModal);
+    }
+  }
 }
 
 //TODO: Handle opening profile modal
@@ -152,3 +170,8 @@ const cardcloselButton = document.querySelector("#card-close");
 cardcloselButton.addEventListener("click", () => {
   closeModal(cardModal);
 });
+
+
+//TODO Handle closing modal on click out and escape
+
+
