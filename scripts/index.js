@@ -13,6 +13,19 @@ function closeModal(modal) {
   document.removeEventListener("click", handleOverlayClick);
 }
 
+// via ** close button click
+
+const modalCloseBtns = document.querySelectorAll(".modal__close-button");
+
+modalCloseBtns.forEach((btn) => {
+  btn.addEventListener("click", (evt) => {
+   const openModal = document.querySelector(".modal_opened");
+   if (openModal) {
+     closeModal(openModal);
+   }
+  });
+});
+
 // via ** esc key **
 function handleEscKey(event) {
   if (event.key === "Escape") {
@@ -29,7 +42,6 @@ function handleOverlayClick(event) {
     closeModal(event.target);
   }
 }
-
 
 // TODO: Handle profile modal events/changes in profile info
 
@@ -50,16 +62,8 @@ profileEditButton.addEventListener("click", () => {
   openModal(profileModal);
 });
 
-//TODO: ** Handle closing profile modal
 
-// via ** modal close button click **
-const profileCloseButton = document.querySelector("#profile-close");
-
-profileCloseButton.addEventListener("click", () => {
-  closeModal(profileModal);
-});
-
-    //TODO: **  Handle submitting profile modal form
+//TODO: **  Handle submitting profile modal form
 
 const profileModalForm = document.querySelector("#profile-form");
 
@@ -116,9 +120,7 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-button");
-previewModalCloseBtn.addEventListener("click", () => {
-  closeModal(previewModal);
-});
+
 
 //TODO:  making a new card by copying template in html via JS
 
@@ -177,10 +179,5 @@ cardModalForm.addEventListener("submit", (evt) => {
   const card = createCard(data);
   const cardsContainer = document.querySelector(".cards__list");
   cardsContainer.prepend(card);
-  closeModal(cardModal);
-});
-
-const cardcloselButton = document.querySelector("#card-close");
-cardcloselButton.addEventListener("click", () => {
   closeModal(cardModal);
 });
