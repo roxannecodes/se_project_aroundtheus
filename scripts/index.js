@@ -10,21 +10,19 @@ const profileDescriptionInput = document.querySelector("#profile-description");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
- document.addEventListener("keydown", handleEscKey);
-
+  document.addEventListener("keydown", handleEscKey);
+  document.addEventListener("click", handleOverlayClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscKey);
+  document.removeEventListener("click", handleOverlayClick);
 }
 
-function handleOverlayClick(event) {
-  if (event.target.classList.contains("modal")) {
-    closeModal(event.target);
-  }
-}
+//TODO: Handle special modal close events
 
+// via ** esc key **
 function handleEscKey(event) {
   if (event.key === "Escape") {
     const openModal = document.querySelector(".modal_opened");
@@ -34,16 +32,26 @@ function handleEscKey(event) {
   }
 }
 
+// via ** overlay click **
+function handleOverlayClick(event) {
+  if (event.target.classList.contains("modal")) {
+    closeModal(event.target);
+  }
+}
+
 //TODO: Handle opening profile modal
 
 const profileEditButton = document.querySelector(".profile__edit-button");
+
 profileEditButton.addEventListener("click", () => {
   openModal(profileModal);
 });
 
 //TODO: Handle closing profile modal
 
+// via ** modal close button click **
 const profileCloseButton = document.querySelector("#profile-close");
+
 profileCloseButton.addEventListener("click", () => {
   closeModal(profileModal);
 });
@@ -51,6 +59,7 @@ profileCloseButton.addEventListener("click", () => {
 //TODO: Handle submitting profile modal form
 
 const profileModalForm = document.querySelector("#profile-form");
+
 profileModalForm.addEventListener("submit", submitProfileModal);
 
 function submitProfileModal(evt) {
@@ -61,6 +70,7 @@ function submitProfileModal(evt) {
 }
 
 //TODO: store initial cards' data into an array of objects
+
 const cardData = [
   {
     name: "Yosemite Valley",
@@ -150,6 +160,7 @@ const cardImageInput = document.querySelector("#card-image");
 const cardModalForm = document.querySelector("#card-form");
 
 const addImageButton = document.querySelector(".profile__add-button");
+
 addImageButton.addEventListener("click", () => {
   openModal(cardModal);
 });
@@ -170,8 +181,3 @@ const cardcloselButton = document.querySelector("#card-close");
 cardcloselButton.addEventListener("click", () => {
   closeModal(cardModal);
 });
-
-
-//TODO Handle closing modal on click out and escape
-
-
