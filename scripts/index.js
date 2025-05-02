@@ -1,12 +1,5 @@
-// TODO: Handle profile modal events/changes in profile info
 
-const profileInfo = document.querySelector(".profile__info");
-const profileName = profileInfo.querySelector(".profile__name");
-const profileDescription = profileInfo.querySelector(".profile__description");
-
-const profileModal = document.querySelector("#profile-modal");
-const profileNameInput = document.querySelector("#profile-name");
-const profileDescriptionInput = document.querySelector("#profile-description");
+//TODO: Handle general modal open and close events
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -19,8 +12,6 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscKey);
   document.removeEventListener("click", handleOverlayClick);
 }
-
-//TODO: Handle special modal close events
 
 // via ** esc key **
 function handleEscKey(event) {
@@ -39,6 +30,17 @@ function handleOverlayClick(event) {
   }
 }
 
+// TODO: Handle profile modal events/changes in profile info
+
+const profileInfo = document.querySelector(".profile__info");
+const profileName = profileInfo.querySelector(".profile__name");
+const profileDescription = profileInfo.querySelector(".profile__description");
+
+const profileModal = document.querySelector("#profile-modal");
+const profileNameInput = document.querySelector("#profile-name");
+const profileDescriptionInput = document.querySelector("#profile-description");
+
+
 //TODO: Handle opening profile modal
 
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -47,7 +49,7 @@ profileEditButton.addEventListener("click", () => {
   openModal(profileModal);
 });
 
-//TODO: Handle closing profile modal
+//TODO: ** Handle closing profile modal
 
 // via ** modal close button click **
 const profileCloseButton = document.querySelector("#profile-close");
@@ -56,7 +58,7 @@ profileCloseButton.addEventListener("click", () => {
   closeModal(profileModal);
 });
 
-//TODO: Handle submitting profile modal form
+    //TODO: **  Handle submitting profile modal form
 
 const profileModalForm = document.querySelector("#profile-form");
 
