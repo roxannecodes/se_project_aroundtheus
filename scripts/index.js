@@ -30,6 +30,7 @@ function handleOverlayClick(event) {
   }
 }
 
+
 // TODO: Handle profile modal events/changes in profile info
 
 const profileInfo = document.querySelector(".profile__info");
