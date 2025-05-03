@@ -1,6 +1,7 @@
 
 //TODO: Handle general modal open and close events
 
+// Main helper functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKey);
@@ -13,18 +14,17 @@ function closeModal(modal) {
   document.removeEventListener("click", handleOverlayClick);
 }
 
-// via ** close button click
+// via ** close button click ( program all modal close buttons)
 
 const modalCloseBtns = document.querySelectorAll(".modal__close-button");
 
 modalCloseBtns.forEach((btn) => {
   btn.addEventListener("click", (evt) => {
    const openModal = document.querySelector(".modal_opened");
-   if (openModal) {
      closeModal(openModal);
-   }
   });
 });
+
 
 // via ** esc key **
 function handleEscKey(event) {
@@ -119,7 +119,7 @@ cardData.forEach((data) => {
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
-const previewModalCloseBtn = previewModal.querySelector(".modal__close-button");
+
 
 
 //TODO:  making a new card by copying template in html via JS
