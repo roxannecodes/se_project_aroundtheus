@@ -36,8 +36,10 @@ const toggleButtonState = (inputList, buttonElement, options) => {
   console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(options.inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(options.inactiveButtonClass);
+     buttonElement.disabled = false;
   }
 };
 
@@ -58,7 +60,7 @@ const setEventListeners = (options, formElement) => {
 };
 
 const enableValidation = (options) => {
-  const formList = document.querySelectorAll(options.formSelector);
+  const formList = Array.from(document.querySelectorAll(options.formSelector));
 
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
