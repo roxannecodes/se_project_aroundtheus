@@ -1,4 +1,3 @@
-
 //TODO: Handle general modal open and close events
 
 // Main helper functions
@@ -20,11 +19,10 @@ const modalCloseBtns = document.querySelectorAll(".modal__close-button");
 
 modalCloseBtns.forEach((btn) => {
   btn.addEventListener("click", (evt) => {
-   const openModal = document.querySelector(".modal_opened");
-     closeModal(openModal);
+    const openModal = document.querySelector(".modal_opened");
+    closeModal(openModal);
   });
 });
-
 
 // via ** esc key **
 function handleEscKey(event) {
@@ -53,15 +51,16 @@ const profileModal = document.querySelector("#profile-modal");
 const profileNameInput = document.querySelector("#profile-name");
 const profileDescriptionInput = document.querySelector("#profile-description");
 
-
 //TODO: Handle opening profile modal
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 
 profileEditButton.addEventListener("click", () => {
-  openModal(profileModal);
-});
+    openModal(profileModal);
+  profileNameInput.value = profileName.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
 
+});
 
 //TODO: **  Handle submitting profile modal form
 
@@ -120,8 +119,6 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
-
-
 //TODO:  making a new card by copying template in html via JS
 
 function createCard(data) {
@@ -172,12 +169,14 @@ addImageButton.addEventListener("click", () => {
 
 cardModalForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
+
   const data = {
     name: cardTitleInput.value,
     link: cardImageInput.value,
   };
   const card = createCard(data);
-  const cardsContainer = document.querySelector(".cards__list");
   cardsContainer.prepend(card);
+  
   closeModal(cardModal);
+  cardModalForm.reset();
 });
