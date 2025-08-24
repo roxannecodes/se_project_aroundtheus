@@ -1,35 +1,20 @@
+//TODO: Handle general modal open and close events
 
-// TODO: Declare PROFILE section & modal DOM variables
-
-const profileInfo = document.querySelector(".profile__info");
-const profileName = profileInfo.querySelector(".profile__name");
-const profileEditButton = profileInfo.querySelector(".profile__edit-button");
-const profileDescription = profileInfo.querySelector(".profile__description");
-
-const profileModal = document.querySelector("#profile-modal");
-const profileModalForm = profileModal.querySelector("#profile-form");
-const profileNameInput = profileModal.querySelector("#profile-name");
-const profileDescriptionInput = profileModal.querySelector("#profile-description");
-
-//TODO: Handle opening profile modal
-
-profileEditButton.addEventListener("click", () => {
-    openModal(profileModal);
-  profileNameInput.value = profileName.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-
-});
-
-//Helper
+// Main helper functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKey);
   document.addEventListener("click", handleOverlayClick);
 }
 
-//TODO: Handle closing modals
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKey);
+  document.removeEventListener("click", handleOverlayClick);
+}
 
 // via ** close button click ( program all modal close buttons)
+
 const modalCloseBtns = document.querySelectorAll(".modal__close-button");
 
 modalCloseBtns.forEach((btn) => {
@@ -38,13 +23,6 @@ modalCloseBtns.forEach((btn) => {
     closeModal(openModal);
   });
 });
-
-//Helper 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscKey);
-  document.removeEventListener("click", handleOverlayClick);
-}
 
 // via ** esc key **
 function handleEscKey(event) {
@@ -62,9 +40,31 @@ function handleOverlayClick(event) {
     closeModal(event.target);
   }
 }
- 
 
-//TODO: Handle submitting profile modal form
+// TODO: Handle profile modal events/changes in profile info
+
+const profileInfo = document.querySelector(".profile__info");
+const profileName = profileInfo.querySelector(".profile__name");
+const profileDescription = profileInfo.querySelector(".profile__description");
+
+const profileModal = document.querySelector("#profile-modal");
+const profileNameInput = document.querySelector("#profile-name");
+const profileDescriptionInput = document.querySelector("#profile-description");
+
+//TODO: Handle opening profile modal
+
+const profileEditButton = document.querySelector(".profile__edit-button");
+
+profileEditButton.addEventListener("click", () => {
+    openModal(profileModal);
+  profileNameInput.value = profileName.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+
+});
+
+//TODO: **  Handle submitting profile modal form
+
+const profileModalForm = document.querySelector("#profile-form");
 
 profileModalForm.addEventListener("submit", submitProfileModal);
 
