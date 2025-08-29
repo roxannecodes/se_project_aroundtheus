@@ -1,4 +1,3 @@
-
 // TODO: Declare PROFILE section & modal DOM variables
 
 const profileInfo = document.querySelector(".profile__info");
@@ -9,15 +8,16 @@ const profileDescription = profileInfo.querySelector(".profile__description");
 const profileModal = document.querySelector("#profile-modal");
 const profileModalForm = profileModal.querySelector("#profile-form");
 const profileNameInput = profileModal.querySelector("#profile-name");
-const profileDescriptionInput = profileModal.querySelector("#profile-description");
+const profileDescriptionInput = profileModal.querySelector(
+  "#profile-description",
+);
 
 //TODO: Handle opening profile modal
 
 profileEditButton.addEventListener("click", () => {
-    openModal(profileModal);
+  openModal(profileModal);
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-
 });
 
 //Helper
@@ -39,7 +39,7 @@ modalCloseBtns.forEach((btn) => {
   });
 });
 
-//Helper 
+//Helper
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscKey);
@@ -62,7 +62,6 @@ function handleOverlayClick(event) {
     closeModal(event.target);
   }
 }
- 
 
 //TODO: Handle submitting profile modal form
 
@@ -176,7 +175,7 @@ cardModalForm.addEventListener("submit", (evt) => {
   };
   const card = createCard(data);
   cardsContainer.prepend(card);
-  
+
   closeModal(cardModal);
   cardModalForm.reset();
 });

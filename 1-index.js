@@ -56,10 +56,9 @@ const profileDescriptionInput = document.querySelector("#profile-description");
 const profileEditButton = document.querySelector(".profile__edit-button");
 
 profileEditButton.addEventListener("click", () => {
-    openModal(profileModal);
+  openModal(profileModal);
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-
 });
 
 //TODO: **  Handle submitting profile modal form
@@ -176,11 +175,10 @@ cardModalForm.addEventListener("submit", (evt) => {
   };
   const card = createCard(data);
   cardsContainer.prepend(card);
-  
+
   closeModal(cardModal);
   cardModalForm.reset();
 });
-
 
 //!  VALIDATION.JS (pre-simplification)
 
@@ -204,7 +202,7 @@ const checkInputValidity = (formElement, inputElement, options) => {
       formElement,
       inputElement,
       inputElement.validationMessage,
-      options
+      options,
     );
   } else {
     hideInputError(formElement, inputElement, options);
@@ -230,7 +228,7 @@ const toggleButtonState = (inputList, buttonElement, options) => {
 
 const setEventListeners = (options, formElement) => {
   const inputList = Array.from(
-    formElement.querySelectorAll(options.inputSelector)
+    formElement.querySelectorAll(options.inputSelector),
   );
   const buttonElement = formElement.querySelector(options.submitButtonSelector);
 

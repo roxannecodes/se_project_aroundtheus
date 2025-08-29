@@ -1,4 +1,3 @@
-
 const showInputError = (inputElement, options) => {
   const errorElement = document.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(options.inputErrorClass);
@@ -33,7 +32,7 @@ const toggleButtonState = (inputList, buttonElement, options) => {
 
 const setEventListeners = (options, formElement) => {
   const inputList = Array.from(
-    formElement.querySelectorAll(options.inputSelector)
+    formElement.querySelectorAll(options.inputSelector),
   );
   const buttonElement = formElement.querySelector(options.submitButtonSelector);
 
@@ -65,4 +64,3 @@ const config = {
 };
 
 enableValidation(config);
-
