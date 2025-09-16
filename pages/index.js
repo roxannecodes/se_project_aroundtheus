@@ -1,3 +1,53 @@
+import Card from "./Card.js";
+
+//TODO: store initial cards' data into an array of objects
+
+const cardData = [
+  {
+    name: "Yosemite Valley",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+  },
+];
+//TODO:  Rendering cards above via the arr.forEach() method
+
+const cardsContainer = document.querySelector(".cards__list");
+
+
+
+
+  const likeButton = document.querySelector(".card__like-button");
+  const deleteButton = document.querySelector(".card__delete-button");
+  // const cardImage = document.querySelector(".card__image");
+
+
+function renderCards() {
+  cardData.forEach((data) => {
+    const card = new Card(data, "#card-template", handleImaeClick);
+     const cardElement = card.generateCard();
+     cardsContainer.append(cardElement);
+  });
+}
+
 // TODO: Declare PROFILE section & modal DOM variables
 
 const profileInfo = document.querySelector(".profile__info");
@@ -9,7 +59,7 @@ const profileModal = document.querySelector("#profile-modal");
 const profileModalForm = profileModal.querySelector("#profile-form");
 const profileNameInput = profileModal.querySelector("#profile-name");
 const profileDescriptionInput = profileModal.querySelector(
-  "#profile-description",
+  "#profile-description"
 );
 
 //TODO: Handle opening profile modal
@@ -74,43 +124,7 @@ function submitProfileModal(evt) {
   closeModal(profileModal);
 }
 
-//TODO: store initial cards' data into an array of objects
 
-const cardData = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-//TODO:  Rendering cards above via the arr.forEach() method
-
-const cardsContainer = document.querySelector(".cards__list");
-
-cardData.forEach((data) => {
-  const card = createCard(data);
-  cardsContainer.prepend(card);
-});
 
 //TODO:  Declare DOM variables for the card image PREVIEW MODAL
 
