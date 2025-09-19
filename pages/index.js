@@ -1,4 +1,4 @@
-import Card from "../components/Card.js";
+// import Card from "../components/Card.js";
 
 //TODO: store initial cards' data into an array of objects
 
@@ -105,33 +105,25 @@ function submitProfileModal(evt) {
   closeModal(profileModal);
 }
 
-//TODO:  Rendering cards above via the arr.forEach() method
-
-const cardsContainer = document.querySelector(".cards__list");
-
-initialCards.forEach((data) => {
-  const card = new Card(data, "#card-template", handleImageClick);
-  const cardElement = card.generateCard();
-  cardsContainer.append(cardElement);
-});
-
-// initialCards.forEach((data) => {
-//   const card = createCard(data);
-//   cardsContainer.prepend(card);
-// });
-
 //TODO:  Declare DOM variables for the card image PREVIEW MODAL
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
-//TODO:  making a new card by copying template in html via JS
+//TODO:  Adding a new card via classic functions
+const cardsContainer = document.querySelector(".cards__list");
+
+function renderCard(data) {
+    const card = createCard(data);
+    cardsContainer.prepend(card);
+}
 
 function createCard(data) {
   const cardTemplate = document
     .querySelector("#card-template")
     .content.querySelector(".card");
+  
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardTitle = cardElement.querySelector(".card__title");
@@ -165,7 +157,21 @@ function handleImageClick(data) {
   previewModalCaption.textContent = data.name;
 }
 
-//TODO: handle creating new card modal events
+//TODO:  Adding a new card via insntantiating Card class
+
+// function renderCard(data) {
+//   const card = new Card(data, "#card-template", handleImageClick);
+//   const cardElement = card.generateCard();
+//   cardsContainer.prepend(cardElement);
+// }
+
+//TODO: Render initial cards
+
+initialCards.forEach((data) => {
+  renderCard(data);
+});
+
+//TODO: handle adding a new card modal events
 
 const cardModal = document.querySelector("#card-modal");
 const cardTitleInput = document.querySelector("#card-title");
@@ -185,8 +191,8 @@ cardModalForm.addEventListener("submit", (evt) => {
     name: cardTitleInput.value,
     link: cardImageInput.value,
   };
-  const card = createCard(data);
-  cardsContainer.prepend(card);
+
+  renderCard(data);
 
   closeModal(cardModal);
   cardModalForm.reset();
