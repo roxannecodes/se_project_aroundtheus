@@ -1,4 +1,5 @@
 import Card from "../components/Card.js";
+// import FormValidator from "../components/FormValidator.js";
 
 //TODO: store initial cards' data into an array of objects
 
@@ -29,6 +30,17 @@ const initialCards = [
   },
 ];
 
+//TODO: Declare properties of settings object for configuring Form Validation
+
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__input-error_active",
+};
+
 // TODO: Declare PROFILE section & modal DOM variables
 
 const profileInfo = document.querySelector(".profile__info");
@@ -51,7 +63,6 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
 });
 
-//Helper
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKey);
@@ -70,7 +81,6 @@ modalCloseBtns.forEach((btn) => {
   });
 });
 
-//Helper
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscKey);
@@ -127,7 +137,7 @@ function renderCard(data) {
     cardsContainer.prepend(card);
 }
 
-//!Via ** classic functions ** 
+// Via ** classic functions ** 
 
 // function createCard(data) {
 //   const cardTemplate = document
@@ -160,7 +170,7 @@ function renderCard(data) {
 //   return cardElement;
 // }
 
-//! via ** insntantiating Card class **
+// via ** insntantiating Card class **
 
 function createCard(data) {
   const card = new Card(data, "#card-template", openPreviewModal);
@@ -200,3 +210,4 @@ cardModalForm.addEventListener("submit", (evt) => {
   closeModal(cardModal);
   cardModalForm.reset();
 });
+
