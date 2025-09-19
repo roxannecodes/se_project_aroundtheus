@@ -1,4 +1,4 @@
-// import Card from "../components/Card.js";
+import Card from "../components/Card.js";
 
 //TODO: store initial cards' data into an array of objects
 
@@ -105,13 +105,21 @@ function submitProfileModal(evt) {
   closeModal(profileModal);
 }
 
-//TODO:  Declare DOM variables for the card image PREVIEW MODAL
+//TODO:  Handle opening card image PREVIEW MODAL
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
-//TODO:  Adding a new card via classic functions
+function openPreviewModal(data) {
+  openModal(previewModal);
+  previewModalImage.src = data.link;
+  previewModalImage.alt = `Enlarged view of ${data.name}`;
+  previewModalCaption.textContent = data.name;
+}
+
+//TODO:  Handle adding a new card 
+
 const cardsContainer = document.querySelector(".cards__list");
 
 function renderCard(data) {
@@ -119,51 +127,46 @@ function renderCard(data) {
     cardsContainer.prepend(card);
 }
 
-function createCard(data) {
-  const cardTemplate = document
-    .querySelector("#card-template")
-    .content.querySelector(".card");
+//!Via ** classic functions ** 
+
+// function createCard(data) {
+//   const cardTemplate = document
+//     .querySelector("#card-template")
+//     .content.querySelector(".card");
   
-  const cardElement = cardTemplate.cloneNode(true);
+//   const cardElement = cardTemplate.cloneNode(true);
 
-  const cardTitle = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-  const cardImage = cardElement.querySelector(".card__image");
+//   const cardTitle = cardElement.querySelector(".card__title");
+//   const likeButton = cardElement.querySelector(".card__like-button");
+//   const deleteButton = cardElement.querySelector(".card__delete-button");
+//   const cardImage = cardElement.querySelector(".card__image");
 
-  cardTitle.textContent = data.name;
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
+//   cardTitle.textContent = data.name;
+//   cardImage.src = data.link;
+//   cardImage.alt = data.name;
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+//   likeButton.addEventListener("click", () => {
+//     likeButton.classList.toggle("card__like-button_active");
+//   });
 
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+//   deleteButton.addEventListener("click", () => {
+//     cardElement.remove();
+//   });
 
-  cardImage.addEventListener("click", () => {
-    handleImageClick(data);
-  });
+//   cardImage.addEventListener("click", () => {
+//     openPreviewModal(data);
+//   });
 
+//   return cardElement;
+// }
+
+//! via ** insntantiating Card class **
+
+function createCard(data) {
+  const card = new Card(data, "#card-template", openPreviewModal);
+  const cardElement = card.generateCard();
   return cardElement;
 }
-
-function handleImageClick(data) {
-  openModal(previewModal);
-  previewModalImage.src = data.link;
-  previewModalImage.alt = `Enlarged view of ${data.name}`;
-  previewModalCaption.textContent = data.name;
-}
-
-//TODO:  Adding a new card via insntantiating Card class
-
-// function renderCard(data) {
-//   const card = new Card(data, "#card-template", handleImageClick);
-//   const cardElement = card.generateCard();
-//   cardsContainer.prepend(cardElement);
-// }
 
 //TODO: Render initial cards
 
