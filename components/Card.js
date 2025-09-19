@@ -36,8 +36,8 @@ export default class Card {
       .cloneNode(true);
     this._cardTitle = this._element.querySelector(".card__title");
     this._cardImage = this._element.querySelector(".card__image");
-    this._cardLikeButton = this._element.querySelector(".Card__like-button");
-    this._cardDeleteButton = this._element.querySelector(".Card__delete-button");
+    this._cardLikeButton = this._element.querySelector(".card__like-button");
+    this._cardDeleteButton = this._element.querySelector(".card__delete-button");
 
     this._cardImage.src = this._link;
     this._cardImage.alt = this._title;
