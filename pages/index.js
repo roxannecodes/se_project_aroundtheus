@@ -1,8 +1,8 @@
-import Card from "./Card.js";
+import Card from "../components/Card.js";
 
 //TODO: store initial cards' data into an array of objects
 
-const cardData = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -28,25 +28,6 @@ const cardData = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-//TODO:  Rendering cards above via the arr.forEach() method
-
-const cardsContainer = document.querySelector(".cards__list");
-
-
-
-
-  const likeButton = document.querySelector(".card__like-button");
-  const deleteButton = document.querySelector(".card__delete-button");
-  // const cardImage = document.querySelector(".card__image");
-
-
-function renderCards() {
-  cardData.forEach((data) => {
-    const card = new Card(data, "#card-template", handleImaeClick);
-     const cardElement = card.generateCard();
-     cardsContainer.append(cardElement);
-  });
-}
 
 // TODO: Declare PROFILE section & modal DOM variables
 
@@ -124,7 +105,20 @@ function submitProfileModal(evt) {
   closeModal(profileModal);
 }
 
+//TODO:  Rendering cards above via the arr.forEach() method
 
+const cardsContainer = document.querySelector(".cards__list");
+
+initialCards.forEach((data) => {
+  const card = new Card(data, "#card-template", handleImageClick);
+  const cardElement = card.generateCard();
+  cardsContainer.append(cardElement);
+});
+
+// initialCards.forEach((data) => {
+//   const card = createCard(data);
+//   cardsContainer.prepend(card);
+// });
 
 //TODO:  Declare DOM variables for the card image PREVIEW MODAL
 
@@ -158,13 +152,17 @@ function createCard(data) {
   });
 
   cardImage.addEventListener("click", () => {
-    openModal(previewModal);
-    previewModalImage.src = data.link;
-    previewModalImage.alt = `Enlarged view of ${data.name}`;
-    previewModalCaption.textContent = data.name;
+    handleImageClick(data);
   });
 
   return cardElement;
+}
+
+function handleImageClick(data) {
+  openModal(previewModal);
+  previewModalImage.src = data.link;
+  previewModalImage.alt = `Enlarged view of ${data.name}`;
+  previewModalCaption.textContent = data.name;
 }
 
 //TODO: handle creating new card modal events
