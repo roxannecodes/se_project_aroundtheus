@@ -52,7 +52,7 @@ const profileModal = document.querySelector("#profile-modal");
 const profileModalForm = profileModal.querySelector("#profile-form");
 const profileNameInput = profileModal.querySelector("#profile-name");
 const profileDescriptionInput = profileModal.querySelector(
-  "#profile-description"
+  "#profile-description",
 );
 
 //TODO: Handle opening profile modal
@@ -128,22 +128,22 @@ function openPreviewModal(data) {
   previewModalCaption.textContent = data.name;
 }
 
-//TODO:  Handle adding a new card 
+//TODO:  Handle adding a new card
 
 const cardsContainer = document.querySelector(".cards__list");
 
 function renderCard(data) {
-    const card = createCard(data);
-    cardsContainer.prepend(card);
+  const card = createCard(data);
+  cardsContainer.prepend(card);
 }
 
-// Via ** classic functions ** 
+// Via ** classic functions **
 
 // function createCard(data) {
 //   const cardTemplate = document
 //     .querySelector("#card-template")
 //     .content.querySelector(".card");
-  
+
 //   const cardElement = cardTemplate.cloneNode(true);
 
 //   const cardTitle = cardElement.querySelector(".card__title");
@@ -210,4 +210,3 @@ cardModalForm.addEventListener("submit", (evt) => {
   closeModal(cardModal);
   cardModalForm.reset();
 });
-
