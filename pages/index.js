@@ -123,21 +123,16 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
-function openPreviewModal(data) {
+function openPreviewModal({name, link}) {
   openModal(previewModal);
-  previewModalImage.src = data.link;
-  previewModalImage.alt = `Enlarged view of ${data.name}`;
-  previewModalCaption.textContent = data.name;
+  previewModalImage.src = link;
+  previewModalImage.alt = `Enlarged view of ${name}`;
+  previewModalCaption.textContent = name;
 }
 
 //TODO:  Handle adding a new card
 
 const cardsContainer = document.querySelector(".cards__list");
-
-function renderCard(data) {
-  const card = createCard(data);
-  cardsContainer.prepend(card);
-}
 
 // ! Via ** classic functions **
 
@@ -171,6 +166,12 @@ function renderCard(data) {
 
 //   return cardElement;
 // }
+
+
+function renderCard(data) {
+  const card = createCard(data);
+  cardsContainer.prepend(card);
+}
 
 //! via ** insntantiating Card class **
 
@@ -212,3 +213,6 @@ cardModalForm.addEventListener("submit", (evt) => {
   closeModal(cardModal);
   cardModalForm.reset();
 });
+
+//! Setting up form validation VIA ** instantiation of the FormValidator class.
+
