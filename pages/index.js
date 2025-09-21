@@ -63,15 +63,17 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
 });
 
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscKey);
-  document.addEventListener("click", handleOverlayClick);
+  modal.addEventListener("keydown", handleEscKey);
+  modal.addEventListener("click", handleOverlayClick);
 }
 
-//TODO: Handle closing modals
+//TODO: Handle closing modals (for all 3 modals)
 
-// via ** close button click ( program all modal close buttons)
+//! Via ** close button click **
+
 const modalCloseBtns = document.querySelectorAll(".modal__close-button");
 
 modalCloseBtns.forEach((btn) => {
@@ -83,11 +85,11 @@ modalCloseBtns.forEach((btn) => {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscKey);
-  document.removeEventListener("click", handleOverlayClick);
+  modal.removeEventListener("keydown", handleEscKey);
+  modal.removeEventListener("click", handleOverlayClick);
 }
 
-// via ** esc key **
+//! via ** esc key **
 function handleEscKey(event) {
   if (event.key === "Escape") {
     const openModal = document.querySelector(".modal_opened");
@@ -97,7 +99,7 @@ function handleEscKey(event) {
   }
 }
 
-// via ** overlay click **
+//! via ** overlay click **
 function handleOverlayClick(event) {
   if (event.target.classList.contains("modal")) {
     closeModal(event.target);
@@ -137,7 +139,7 @@ function renderCard(data) {
   cardsContainer.prepend(card);
 }
 
-// Via ** classic functions **
+// ! Via ** classic functions **
 
 // function createCard(data) {
 //   const cardTemplate = document
@@ -170,7 +172,7 @@ function renderCard(data) {
 //   return cardElement;
 // }
 
-// via ** insntantiating Card class **
+//! via ** insntantiating Card class **
 
 function createCard(data) {
   const card = new Card(data, "#card-template", openPreviewModal);
