@@ -1,11 +1,12 @@
-const showInputError = (inputElement, options) => {
+
+function showInputError(inputElement, options) {
   const errorElement = document.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(options.inputErrorClass);
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(options.errorClass);
 };
 
-const hideInputError = (inputElement, options) => {
+function hideInputError (inputElement, options) {
   const errorElement = document.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(options.inputErrorClass);
   errorElement.classList.remove(options.errorClass);
@@ -46,7 +47,7 @@ function setEventListeners(options, formElement) {
   });
 }
 
-const enableValidation = (options) => {
+function enableValidation (options) {
   const formList = document.querySelectorAll(options.formSelector);
 
   formList.forEach((formElement) => {
