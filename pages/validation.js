@@ -12,7 +12,7 @@ const hideInputError = (inputElement, options) => {
   errorElement.textContent = "";
 };
 
-const checkInputValidity = (inputElement, options) => {
+function checkInputValidity (inputElement, options) {
   if (!inputElement.validity.valid) {
     showInputError(inputElement, options);
   } else {
@@ -20,7 +20,7 @@ const checkInputValidity = (inputElement, options) => {
   }
 };
 
-const toggleButtonState = (inputList, buttonElement, options) => {
+function toggleButtonState (inputList, buttonElement, options) {
   if (inputList.some((inputElement) => !inputElement.validity.valid)) {
     buttonElement.classList.add(options.inactiveButtonClass);
     buttonElement.disabled = true;
@@ -30,7 +30,7 @@ const toggleButtonState = (inputList, buttonElement, options) => {
   }
 };
 
-const setEventListeners = (options, formElement) => {
+function setEventListeners (options, formElement) {
   const inputList = Array.from(
     formElement.querySelectorAll(options.inputSelector),
   );

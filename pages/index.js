@@ -1,5 +1,5 @@
 import Card from "../components/Card.js";
-// import FormValidator from "../components/FormValidator.js";
+import FormValidator from "../components/FormValidator.js";
 
 //TODO: store initial cards' data into an array of objects
 
@@ -30,7 +30,7 @@ const initialCards = [
   },
 ];
 
-//TODO: Declare properties of settings object for configuring Form Validation
+//TODO: Declare properties of the options/settings object for configuring ** Form Validation **
 
 const config = {
   formSelector: ".modal__form",
@@ -130,11 +130,11 @@ function openPreviewModal({name, link}) {
   previewModalCaption.textContent = name;
 }
 
-//TODO:  Handle adding a new card
+//TODO:  Handle creating a new card & adding it to DOM tree
 
 const cardsContainer = document.querySelector(".cards__list");
 
-// ! Via ** classic functions **
+// ! Via ** classic functions ** (project 6)
 
 // function createCard(data) {
 //   const cardTemplate = document
@@ -173,7 +173,7 @@ function renderCard(data) {
   cardsContainer.prepend(card);
 }
 
-//! via ** insntantiating Card class **
+//! via ** insntantiating Card class ** (project 7)
 
 function createCard(data) {
   const card = new Card(data, "#card-template", openPreviewModal);
@@ -194,9 +194,9 @@ const cardTitleInput = document.querySelector("#card-title");
 const cardImageInput = document.querySelector("#card-image");
 const cardModalForm = document.querySelector("#card-form");
 
-const addImageButton = document.querySelector(".profile__add-button");
+const addCardButton = document.querySelector(".profile__add-button");
 
-addImageButton.addEventListener("click", () => {
+addCardButton.addEventListener("click", () => {
   openModal(cardModal);
 });
 
@@ -214,5 +214,10 @@ cardModalForm.addEventListener("submit", (evt) => {
   cardModalForm.reset();
 });
 
-//! Setting up form validation VIA ** instantiation of the FormValidator class.
+//! Setting up form validation VIA ** instantiation of the FormValidator class (project 7)
 
+const profileForm = new FormValidator(config, "#profile-form");
+profileForm.enableValidation();
+
+const addCardForm = new FormValidator(config, "#card-form");
+addCardForm.enableValidation();
