@@ -12,15 +12,15 @@ const hideInputError = (inputElement, options) => {
   errorElement.textContent = "";
 };
 
-function checkInputValidity (inputElement, options) {
+function checkInputValidity(inputElement, options) {
   if (!inputElement.validity.valid) {
     showInputError(inputElement, options);
   } else {
     hideInputError(inputElement, options);
   }
-};
+}
 
-function toggleButtonState (inputList, buttonElement, options) {
+function toggleButtonState(inputList, buttonElement, options) {
   if (inputList.some((inputElement) => !inputElement.validity.valid)) {
     buttonElement.classList.add(options.inactiveButtonClass);
     buttonElement.disabled = true;
@@ -28,9 +28,9 @@ function toggleButtonState (inputList, buttonElement, options) {
     buttonElement.classList.remove(options.inactiveButtonClass);
     buttonElement.disabled = false;
   }
-};
+}
 
-function setEventListeners (options, formElement) {
+function setEventListeners(options, formElement) {
   const inputList = Array.from(
     formElement.querySelectorAll(options.inputSelector),
   );
@@ -44,7 +44,7 @@ function setEventListeners (options, formElement) {
       toggleButtonState(inputList, buttonElement, options);
     });
   });
-};
+}
 
 const enableValidation = (options) => {
   const formList = document.querySelectorAll(options.formSelector);

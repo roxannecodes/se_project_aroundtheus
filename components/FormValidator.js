@@ -1,26 +1,18 @@
-export default class FormValidator{
-    constructor(options, formSelector) {
-        this._options = options;
-        this._formSelector = formSelector;
-    }
+export default class FormValidator {
+  constructor(options, formSelector) {
+    this._options = options;
+    this._formSelector = formSelector;
+  }
 
-    _setEventListeners() {
-        
-    }
+  _setEventListeners() {}
 
-    _checkInputValdity() {
-        
-    }
+  _checkInputValdity() {}
 
-    _toggleButtonState() {
-        
-    }
+  _toggleButtonState() {}
 
-    enableValidation() {
-        this._formElement = document.querySelector(`${formSelector}`);
-    }
+  enableValidation() {
+    this._formElement = document.querySelector(`${formSelector}`);
+  }
 
-    resetValidation() {
-        
-    }
+  resetValidation() {}
 }
