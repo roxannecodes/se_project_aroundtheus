@@ -4,11 +4,11 @@ export default class FormValidator {
     this._formSelector = formSelector;
   }
 
-  _setEventListeners() {}
-
   _checkInputValdity() {}
 
   _toggleButtonState() {}
+
+  _setEventListeners() {}
 
   enableValidation() {
     this._formElement = document.querySelector(`${formSelector}`);

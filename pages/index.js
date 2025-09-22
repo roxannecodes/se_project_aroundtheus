@@ -205,6 +205,7 @@ addCardButton.addEventListener("click", () => {
 const cardModalForm = document.querySelector("#card-form");
 
 cardModalForm.addEventListener("submit", (evt) => {
+
   evt.preventDefault();
 
   const data = {
@@ -221,9 +222,7 @@ cardModalForm.addEventListener("submit", (evt) => {
 //TODO: instantiation of the FormValidator class (project 7)
 
 const profileForm = new FormValidator(config, "#profile-form");
-
 profileForm.enableValidation();
 
 const addCardForm = new FormValidator(config, "#card-form");
-
 addCardForm.enableValidation();
