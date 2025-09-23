@@ -173,7 +173,7 @@ function renderCard(data) {
   cardsContainer.prepend(card);
 }
 
-//! via ** insntantiating Card class ** (project 7)
+//! via ** insntantiation of Card class (project 7)
 
 function createCard(data) {
   const card = new Card(data, "#card-template", openPreviewModal);
@@ -205,7 +205,6 @@ addCardButton.addEventListener("click", () => {
 const cardModalForm = document.querySelector("#card-form");
 
 cardModalForm.addEventListener("submit", (evt) => {
-
   evt.preventDefault();
 
   const data = {
@@ -221,8 +220,8 @@ cardModalForm.addEventListener("submit", (evt) => {
 
 //TODO: instantiation of the FormValidator class (project 7)
 
-const profileForm = new FormValidator(config, "#profile-form");
-profileForm.enableValidation();
+const profileFormValidation = new FormValidator(config, "#profile-form");
+profileFormValidation.enableValidation();
 
-const addCardForm = new FormValidator(config, "#card-form");
-addCardForm.enableValidation();
+const cardFormValidator = new FormValidator(config, "#card-form");
+cardFormValidator.enableValidation();
