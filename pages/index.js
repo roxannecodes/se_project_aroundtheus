@@ -1,5 +1,4 @@
 //TODO: import modules
-
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
@@ -56,6 +55,7 @@ const profileNameInput = profileModal.querySelector("#profile-name");
 const profileDescriptionInput = profileModal.querySelector(
   "#profile-description",
 );
+const profileSubmitBtn = profileModalForm.querySelector(".modal__save-button");
 
 //TODO: Handle opening profile modal
 
@@ -69,6 +69,18 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   modal.addEventListener("keydown", handleEscKey);
   modal.addEventListener("click", handleOverlayClick);
+}
+
+//TODO: Handle submitting profile modal form
+
+profileModalForm.addEventListener("submit", submitProfileModal);
+
+function submitProfileModal(evt) {
+  evt.preventDefault();
+  profileName.textContent = profileNameInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  closeModal(profileModal);
+  profileSubmitBtn.classList.add("modal__save-button_disabled");
 }
 
 //TODO: Handle closing modals (for all 3 modals)
@@ -105,17 +117,6 @@ function handleOverlayClick(event) {
   if (event.target.classList.contains("modal")) {
     closeModal(event.target);
   }
-}
-
-//TODO: Handle submitting profile modal form
-
-profileModalForm.addEventListener("submit", submitProfileModal);
-
-function submitProfileModal(evt) {
-  evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closeModal(profileModal);
 }
 
 //TODO:  Handle opening card image PREVIEW MODAL
@@ -192,6 +193,7 @@ initialCards.forEach((data) => {
 const cardModal = document.querySelector("#card-modal");
 const cardTitleInput = document.querySelector("#card-title");
 const cardImageInput = document.querySelector("#card-image");
+const addCardSubmitBtn = cardModal.querySelector(".modal__save-button");
 
 // Open add-card modal
 const addCardButton = document.querySelector(".profile__add-button");
@@ -200,7 +202,7 @@ addCardButton.addEventListener("click", () => {
   openModal(cardModal);
 });
 
-// Program submit events for add-card form
+// TODO: handle submitting add-card modal
 
 const cardModalForm = document.querySelector("#card-form");
 
@@ -216,6 +218,7 @@ cardModalForm.addEventListener("submit", (evt) => {
 
   closeModal(cardModal);
   cardModalForm.reset();
+  addCardSubmitBtn.classList.add("modal__save-button_disabled");
 });
 
 //TODO: instantiation of the FormValidator class (project 7)
