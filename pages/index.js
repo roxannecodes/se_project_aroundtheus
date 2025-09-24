@@ -132,6 +132,19 @@ function openPreviewModal({ name, link }) {
   previewModalCaption.textContent = name;
 }
 
+//TODO: handle opening new card modal
+
+const cardModal = document.querySelector("#card-modal");
+const cardTitleInput = document.querySelector("#card-title");
+const cardImageInput = document.querySelector("#card-image");
+const addCardSubmitBtn = cardModal.querySelector(".modal__save-button");
+
+const addCardButton = document.querySelector(".profile__add-button");
+
+addCardButton.addEventListener("click", () => {
+  openModal(cardModal);
+});
+
 //TODO:  Handle creating a new card & adding it to DOM tree
 
 const cardsContainer = document.querySelector(".cards__list");
@@ -182,27 +195,13 @@ function createCard(data) {
   return cardElement;
 }
 
-//TODO: Render initial cards
+// Render ** initial cards **
 
 initialCards.forEach((data) => {
   renderCard(data);
 });
 
-//TODO: handle adding a new card modal events
-
-const cardModal = document.querySelector("#card-modal");
-const cardTitleInput = document.querySelector("#card-title");
-const cardImageInput = document.querySelector("#card-image");
-const addCardSubmitBtn = cardModal.querySelector(".modal__save-button");
-
-// Open add-card modal
-const addCardButton = document.querySelector(".profile__add-button");
-
-addCardButton.addEventListener("click", () => {
-  openModal(cardModal);
-});
-
-// TODO: handle submitting add-card modal
+// TODO: handle submitting card modal form
 
 const cardModalForm = document.querySelector("#card-form");
 
