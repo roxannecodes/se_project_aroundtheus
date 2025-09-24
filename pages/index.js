@@ -83,7 +83,7 @@ function submitProfileModal(evt) {
   profileSubmitBtn.classList.add("modal__save-button_disabled");
 }
 
-//TODO: Handle closing modals (for all 3 modals)
+//TODO: Handle closing all modals 
 
 //! Via ** close button click **
 
@@ -117,19 +117,6 @@ function handleOverlayClick(event) {
   if (event.target.classList.contains("modal")) {
     closeModal(event.target);
   }
-}
-
-//TODO:  Handle opening card image PREVIEW MODAL
-
-const previewModal = document.querySelector("#preview-modal");
-const previewModalImage = previewModal.querySelector(".modal__image");
-const previewModalCaption = previewModal.querySelector(".modal__caption");
-
-function openPreviewModal({ name, link }) {
-  openModal(previewModal);
-  previewModalImage.src = link;
-  previewModalImage.alt = `Enlarged view of ${name}`;
-  previewModalCaption.textContent = name;
 }
 
 //TODO: handle opening new card modal
@@ -219,6 +206,19 @@ cardModalForm.addEventListener("submit", (evt) => {
   cardModalForm.reset();
   addCardSubmitBtn.classList.add("modal__save-button_disabled");
 });
+
+//TODO:  Handle opening card image PREVIEW MODAL
+
+const previewModal = document.querySelector("#preview-modal");
+const previewModalImage = previewModal.querySelector(".modal__image");
+const previewModalCaption = previewModal.querySelector(".modal__caption");
+
+function openPreviewModal({ name, link }) {
+  openModal(previewModal);
+  previewModalImage.src = link;
+  previewModalImage.alt = `Enlarged view of ${name}`;
+  previewModalCaption.textContent = name;
+}
 
 //TODO: instantiation of the FormValidator class (project 7)
 
