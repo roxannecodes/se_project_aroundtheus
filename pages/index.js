@@ -31,7 +31,7 @@ const initialCards = [
   },
 ];
 
-//TODO: Declare properties of the options/settings object for configuring ** Form Validation **
+//TODO: Declare properties of the settings object for configuring Form Validation
 
 const config = {
   formSelector: ".modal__form",
@@ -67,8 +67,8 @@ profileEditButton.addEventListener("click", () => {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  modal.addEventListener("keydown", handleEscKey);
-  modal.addEventListener("click", handleOverlayClick);
+  document.addEventListener("keydown", handleEscKey);
+  document.addEventListener("click", handleOverlayClick);
 }
 
 //TODO: Handle submitting profile modal form
@@ -77,13 +77,22 @@ profileModalForm.addEventListener("submit", submitProfileModal);
 
 function submitProfileModal(evt) {
   evt.preventDefault();
+
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
+
   closeModal(profileModal);
-  profileSubmitBtn.classList.add("modal__save-button_disabled");
+
+  profileFormValidation.resetValidation();
 }
 
-//TODO: Handle closing all modals 
+//TODO: Handle closing all modals
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKey);
+  document.removeEventListener("click", handleOverlayClick);
+}
 
 //! Via ** close button click **
 
@@ -95,12 +104,6 @@ modalCloseBtns.forEach((btn) => {
     closeModal(openModal);
   });
 });
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  modal.removeEventListener("keydown", handleEscKey);
-  modal.removeEventListener("click", handleOverlayClick);
-}
 
 //! via ** esc key **
 function handleEscKey(event) {
@@ -121,11 +124,6 @@ function handleOverlayClick(event) {
 
 //TODO: handle opening new card modal
 
-const cardModal = document.querySelector("#card-modal");
-const cardTitleInput = document.querySelector("#card-title");
-const cardImageInput = document.querySelector("#card-image");
-const addCardSubmitBtn = cardModal.querySelector(".modal__save-button");
-
 const addCardButton = document.querySelector(".profile__add-button");
 
 addCardButton.addEventListener("click", () => {
@@ -134,47 +132,12 @@ addCardButton.addEventListener("click", () => {
 
 //TODO:  Handle creating a new card & adding it to DOM tree
 
+const cardModal = document.querySelector("#card-modal");
+const cardTitleInput = cardModal.querySelector("#card-title");
+const cardImageInput = cardModal.querySelector("#card-image");
+const cardSubmitBtn = cardModal.querySelector(".modal__save-button");
+
 const cardsContainer = document.querySelector(".cards__list");
-
-// ! Via ** classic functions ** (project 6)
-
-// function createCard(data) {
-//   const cardTemplate = document
-//     .querySelector("#card-template")
-//     .content.querySelector(".card");
-
-//   const cardElement = cardTemplate.cloneNode(true);
-
-//   const cardTitle = cardElement.querySelector(".card__title");
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   const deleteButton = cardElement.querySelector(".card__delete-button");
-//   const cardImage = cardElement.querySelector(".card__image");
-
-//   cardTitle.textContent = data.name;
-//   cardImage.src = data.link;
-//   cardImage.alt = data.name;
-
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__like-button_active");
-//   });
-
-//   deleteButton.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-
-//   cardImage.addEventListener("click", () => {
-//     openPreviewModal(data);
-//   });
-
-//   return cardElement;
-// }
-
-function renderCard(data) {
-  const card = createCard(data);
-  cardsContainer.prepend(card);
-}
-
-//! via ** insntantiation of Card class (project 7)
 
 function createCard(data) {
   const card = new Card(data, "#card-template", openPreviewModal);
@@ -182,8 +145,12 @@ function createCard(data) {
   return cardElement;
 }
 
-// Render ** initial cards **
+function renderCard(data) {
+  const card = createCard(data);
+  cardsContainer.prepend(card);
+}
 
+// Render ** initial cards *
 initialCards.forEach((data) => {
   renderCard(data);
 });
@@ -203,8 +170,8 @@ cardModalForm.addEventListener("submit", (evt) => {
   renderCard(data);
 
   closeModal(cardModal);
-  cardModalForm.reset();
-  addCardSubmitBtn.classList.add("modal__save-button_disabled");
+
+  cardFormValidation.resetValidation();
 });
 
 //TODO:  Handle opening card image PREVIEW MODAL
@@ -220,10 +187,10 @@ function openPreviewModal({ name, link }) {
   previewModalCaption.textContent = name;
 }
 
-//TODO: instantiation of the FormValidator class (project 7)
+//TODO: instantiation of the FormValidator class
 
-const profileFormValidation = new FormValidator(config, "#profile-form");
+const profileFormValidation = new FormValidator(config, profileModalForm);
 profileFormValidation.enableValidation();
 
-const cardFormValidator = new FormValidator(config, "#card-form");
-cardFormValidator.enableValidation();
+const cardFormValidation = new FormValidator(config, cardModalForm);
+cardFormValidation.enableValidation();
