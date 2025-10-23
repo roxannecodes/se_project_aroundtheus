@@ -180,11 +180,11 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
-function openPreviewModal({ name, link }) {
+function openPreviewModal(data) {
   openModal(previewModal);
-  previewModalImage.src = link;
-  previewModalImage.alt = `Enlarged view of ${name}`;
-  previewModalCaption.textContent = name;
+  previewModalImage.src = data.link;
+  previewModalImage.alt = `Enlarged view of ${data.name}`;
+  previewModalCaption.textContent = data.name;
 }
 
 //TODO: instantiation of the FormValidator class

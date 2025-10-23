@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
-    this._title = name;
-    this._image = link;
+  constructor(data, cardSelector, handleImageClick) {
+    this._title = data.name;
+    this._image = data.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._template = document.querySelector(cardSelector);
   }
 
   _handleLikeButton() {
@@ -32,8 +33,7 @@ export default class Card {
   }
 
   generateCard() {
-    this._element = document
-      .querySelector(this._cardSelector)
+    this._element = this._template
       .content.querySelector(".card")
       .cloneNode(true);
     this._cardTitle = this._element.querySelector(".card__title");
