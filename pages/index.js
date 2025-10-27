@@ -3,6 +3,8 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 
+import Modal from "../components/Modal.js"
+
 //TODO: store initial cards' data into an array of objects
 
 const initialCards = [
@@ -140,22 +142,10 @@ const cardsContainer = document.querySelector(".cards__list");
 
 function createCard(data) {
   const card = new Card(data, "#card-template", openPreviewModal);
-  const cardElement = card.generateCard();
-  return cardElement;
+  return card.generateCard();
 }
 
-function renderCard(data) {
-  const card = createCard(data);
-  cardsContainer.prepend(card);
-}
-
-//! Project 7 (clean, short, simple way)
-
-// initialCards.forEach((data) => {
-//   renderCard(data);
-// });
-
-//! project 8 (over-engineered, long, complicated way)
+//! Render Initial cards
 
 const initialCardList = new Section(
   {
@@ -174,6 +164,8 @@ initialCardList.renderItems();
 
 const cardModalForm = document.querySelector("#card-form");
 
+//! Add new card
+
 cardModalForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
@@ -182,7 +174,8 @@ cardModalForm.addEventListener("submit", (evt) => {
     link: cardImageInput.value,
   };
 
-  renderCard(data);
+  const cardElement = createCard(data);
+  cardsContainer.prepend(cardElement);
 
   closeModal(cardModal);
 
