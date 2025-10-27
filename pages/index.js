@@ -1,6 +1,7 @@
 //TODO: import modules
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 
 //TODO: store initial cards' data into an array of objects
 
@@ -53,9 +54,8 @@ const profileModal = document.querySelector("#profile-modal");
 const profileModalForm = profileModal.querySelector("#profile-form");
 const profileNameInput = profileModal.querySelector("#profile-name");
 const profileDescriptionInput = profileModal.querySelector(
-  "#profile-description",
+  "#profile-description"
 );
-const profileSubmitBtn = profileModalForm.querySelector(".modal__save-button");
 
 //TODO: Handle opening profile modal
 
@@ -130,12 +130,11 @@ addCardButton.addEventListener("click", () => {
   openModal(cardModal);
 });
 
-//TODO:  Handle creating a new card & adding it to DOM tree
+//TODO:  Handle creating & rendering cards
 
 const cardModal = document.querySelector("#card-modal");
 const cardTitleInput = cardModal.querySelector("#card-title");
 const cardImageInput = cardModal.querySelector("#card-image");
-const cardSubmitBtn = cardModal.querySelector(".modal__save-button");
 
 const cardsContainer = document.querySelector(".cards__list");
 
@@ -150,10 +149,26 @@ function renderCard(data) {
   cardsContainer.prepend(card);
 }
 
-// Render ** initial cards *
-initialCards.forEach((data) => {
-  renderCard(data);
-});
+//! Project 7 (clean, short, simple way)
+
+// initialCards.forEach((data) => {
+//   renderCard(data);
+// });
+
+//! project 8 (over-engineered, long, complicated way)
+
+const initialCardList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      initialCardList.addItem(cardElement);
+    },
+  },
+  ".cards__list"
+);
+
+initialCardList.renderItems();
 
 // TODO: handle submitting card modal form
 
