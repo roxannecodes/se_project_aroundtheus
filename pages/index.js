@@ -59,6 +59,7 @@ const profileDescriptionInput = profileModal.querySelector(
   "#profile-description"
 );
 
+
 //TODO: Handle opening profile modal
 
 profileEditButton.addEventListener("click", () => {
@@ -67,11 +68,11 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
 });
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscKey);
-  document.addEventListener("click", handleOverlayClick);
-}
+// function openModal(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keydown", handleEscKey);
+//   document.addEventListener("click", handleOverlayClick);
+// }
 
 //TODO: Handle submitting profile modal form
 
@@ -90,39 +91,39 @@ function submitProfileModal(evt) {
 
 //TODO: Handle closing all modals
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscKey);
-  document.removeEventListener("click", handleOverlayClick);
-}
+// function closeModal(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keydown", handleEscKey);
+//   document.removeEventListener("click", handleOverlayClick);
+// }
 
-//! Via ** close button click **
+ //! Via ** close button click **
 
-const modalCloseBtns = document.querySelectorAll(".modal__close-button");
+// const modalCloseBtns = document.querySelectorAll(".modal__close-button");
 
-modalCloseBtns.forEach((btn) => {
-  btn.addEventListener("click", (evt) => {
-    const openModal = document.querySelector(".modal_opened");
-    closeModal(openModal);
-  });
-});
+// modalCloseBtns.forEach((btn) => {
+//   btn.addEventListener("click", (evt) => {
+//     const openModal = document.querySelector(".modal_opened");
+//     closeModal(openModal);
+//   });
+// });
 
-//! via ** esc key **
-function handleEscKey(event) {
-  if (event.key === "Escape") {
-    const openModal = document.querySelector(".modal_opened");
-    if (openModal) {
-      closeModal(openModal);
-    }
-  }
-}
+ //! via ** esc key **
+// function handleEscKey(event) {
+//   if (event.key === "Escape") {
+//     const openModal = document.querySelector(".modal_opened");
+//     if (openModal) {
+//       closeModal(openModal);
+//     }
+//   }
+// }
 
-//! via ** overlay click **
-function handleOverlayClick(event) {
-  if (event.target.classList.contains("modal")) {
-    closeModal(event.target);
-  }
-}
+// //! via ** overlay click **
+// function handleOverlayClick(evt) {
+//   if (evt.target.classList.contains("modal")) {
+//     closeModal(evt.target);
+//   }
+// }
 
 //TODO: handle opening new card modal
 
