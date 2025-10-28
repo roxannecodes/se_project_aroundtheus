@@ -108,7 +108,8 @@ function submitProfileModal(evt) {
 //   });
 // });
 
- //! via ** esc key **
+//! via ** esc key **
+ 
 // function handleEscKey(event) {
 //   if (event.key === "Escape") {
 //     const openModal = document.querySelector(".modal_opened");
@@ -119,6 +120,7 @@ function submitProfileModal(evt) {
 // }
 
 // //! via ** overlay click **
+
 // function handleOverlayClick(evt) {
 //   if (evt.target.classList.contains("modal")) {
 //     closeModal(evt.target);

@@ -4,13 +4,12 @@ export default class Modal {
   }
   open() {
     this.modalElement.classList.add("modal_opened");
-    document.removeEventListener("keydown", _handleEscClose);
+    document.addEventListener("keydown", _handleEscClose);
   }
 
   close() {
     this.modalElement.classList.remove("modal_opened");
     document.removeEventListener("keydown", _handleEscClose);
- 
   }
 
   _handleEscClose(evt) {
@@ -25,11 +24,12 @@ export default class Modal {
 
   setEventListeners() {
     this.modalElement = document.querySelector(this.modalSelector);
+
+    // Handle close Via ** close button click **
     this.modalCLoseButton = this.modalElement.querySelector(
       ".modal__close-button"
     );
-    
-    // Handle close Via ** close button click **
+
     this.modalCLoseButton.addEventListener("click", this.close());
 
     // Handle close  via ** overlay click **
