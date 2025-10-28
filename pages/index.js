@@ -3,8 +3,6 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 
-import Modal from "../components/Modal.js"
-
 //TODO: store initial cards' data into an array of objects
 
 const initialCards = [
@@ -59,7 +57,6 @@ const profileDescriptionInput = profileModal.querySelector(
   "#profile-description"
 );
 
-
 //TODO: Handle opening profile modal
 
 profileEditButton.addEventListener("click", () => {
@@ -89,7 +86,7 @@ function submitProfileModal(evt) {
   profileFormValidation.resetValidation();
 }
 
-//TODO: Handle closing all modals
+
 
 // function closeModal(modal) {
 //   modal.classList.remove("modal_opened");
@@ -97,7 +94,6 @@ function submitProfileModal(evt) {
 //   document.removeEventListener("click", handleOverlayClick);
 // }
 
- //! Via ** close button click **
 
 // const modalCloseBtns = document.querySelectorAll(".modal__close-button");
 
@@ -108,8 +104,8 @@ function submitProfileModal(evt) {
 //   });
 // });
 
-//! via ** esc key **
- 
+
+
 // function handleEscKey(event) {
 //   if (event.key === "Escape") {
 //     const openModal = document.querySelector(".modal_opened");
@@ -148,7 +144,8 @@ function createCard(data) {
   return card.generateCard();
 }
 
-//! Render Initial cards
+/* Instantiation & initialization of the Section class 
+for rendering inital cards when page loads */
 
 const initialCardList = new Section(
   {
@@ -166,8 +163,6 @@ initialCardList.renderItems();
 // TODO: handle submitting card modal form
 
 const cardModalForm = document.querySelector("#card-form");
-
-//! Add new card
 
 cardModalForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
