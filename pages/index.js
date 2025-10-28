@@ -1,6 +1,7 @@
 //TODO: import modules
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import ModalWithImage from "../components/ModalWithImage.js";
 import Section from "../components/Section.js";
 
 //TODO: store initial cards' data into an array of objects
@@ -65,12 +66,6 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
 });
 
-// function openModal(modal) {
-//   modal.classList.add("modal_opened");
-//   document.addEventListener("keydown", handleEscKey);
-//   document.addEventListener("click", handleOverlayClick);
-// }
-
 //TODO: Handle submitting profile modal form
 
 profileModalForm.addEventListener("submit", submitProfileModal);
@@ -86,43 +81,6 @@ function submitProfileModal(evt) {
   profileFormValidation.resetValidation();
 }
 
-
-
-// function closeModal(modal) {
-//   modal.classList.remove("modal_opened");
-//   document.removeEventListener("keydown", handleEscKey);
-//   document.removeEventListener("click", handleOverlayClick);
-// }
-
-
-// const modalCloseBtns = document.querySelectorAll(".modal__close-button");
-
-// modalCloseBtns.forEach((btn) => {
-//   btn.addEventListener("click", (evt) => {
-//     const openModal = document.querySelector(".modal_opened");
-//     closeModal(openModal);
-//   });
-// });
-
-
-
-// function handleEscKey(event) {
-//   if (event.key === "Escape") {
-//     const openModal = document.querySelector(".modal_opened");
-//     if (openModal) {
-//       closeModal(openModal);
-//     }
-//   }
-// }
-
-// //! via ** overlay click **
-
-// function handleOverlayClick(evt) {
-//   if (evt.target.classList.contains("modal")) {
-//     closeModal(evt.target);
-//   }
-// }
-
 //TODO: handle opening new card modal
 
 const addCardButton = document.querySelector(".profile__add-button");
@@ -131,7 +89,7 @@ addCardButton.addEventListener("click", () => {
   openModal(cardModal);
 });
 
-//TODO:  Handle creating & rendering cards
+//TODO:  Handle creating a new card
 
 const cardModal = document.querySelector("#card-modal");
 const cardTitleInput = cardModal.querySelector("#card-title");
@@ -144,8 +102,7 @@ function createCard(data) {
   return card.generateCard();
 }
 
-/* Instantiation & initialization of the Section class 
-for rendering inital cards when page loads */
+//TODO: Handle rendering inital cards when page loads
 
 const initialCardList = new Section(
   {
@@ -180,17 +137,14 @@ cardModalForm.addEventListener("submit", (evt) => {
   cardFormValidation.resetValidation();
 });
 
-//TODO:  Handle opening card image PREVIEW MODAL
+//TODO:  Handle opening preview modal on card image click
 
-const previewModal = document.querySelector("#preview-modal");
-const previewModalImage = previewModal.querySelector(".modal__image");
-const previewModalCaption = previewModal.querySelector(".modal__caption");
+const previewModal = new ModalWithImage("#preview-modal");
+
+previewModal.setEventListeners;
 
 function openPreviewModal(data) {
-  openModal(previewModal);
-  previewModalImage.src = data.link;
-  previewModalImage.alt = `Enlarged view of ${data.name}`;
-  previewModalCaption.textContent = data.name;
+  previewModal.open(data);
 }
 
 //TODO: instantiation of the FormValidator class
