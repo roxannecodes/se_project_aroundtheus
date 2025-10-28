@@ -1,21 +1,19 @@
-
 export default class Modal {
   constructor(modalSelector) {
-    this.modalSelector = modalSelector;
-      this.modal = document.querySelector(this.modalSelector);
+    this._modal = document.querySelector(modalSelector);
   }
   open() {
-    this.modal.classList.add("modal_opened");
+    this._modal.classList.add("modal_opened");
     document.addEventListener("keydown", _handleEscClose);
   }
 
   close() {
-    this.modal.classList.remove("modal_opened");
+    this._modal.classList.remove("modal_opened");
     document.removeEventListener("keydown", _handleEscClose);
   }
 
   _handleEscClose(evt) {
-    // Handle close Via ** close Esc key **
+    // Close modal via  Esc key
     if (evt.key === "Escape") {
       const openModal = document.querySelector(".modal_opened");
       if (openModal) {
@@ -25,16 +23,12 @@ export default class Modal {
   }
 
   setEventListeners() {
-  
-    // Handle close Via ** close button click **
-    this.modalCLoseButton = this.modal.querySelector(
-      ".modal__close-button"
-    );
+    // Close modal Via close button
+    this._modalCLoseButton = this.modal.querySelector(".modal__close-button");
+    this._modalCLoseButton.addEventListener("click", this.close());
 
-    this.modalCLoseButton.addEventListener("click", this.close());
-
-    // Handle close  via ** overlay click **
-    this.modalElement.addEventListener("click", (evt) => {
+    // Close modal via overlay click
+    this._modal.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("modal")) {
         this.close();
       }
