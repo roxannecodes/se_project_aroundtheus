@@ -141,7 +141,7 @@ cardModalForm.addEventListener("submit", (evt) => {
 
 const previewModal = new ModalWithImage("#preview-modal");
 
-previewModal.setEventListeners;
+previewModal.setEventListeners();
 
 function openPreviewModal(data) {
   previewModal.open(data);
