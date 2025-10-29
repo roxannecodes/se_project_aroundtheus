@@ -24,7 +24,7 @@ export default class Modal {
 
   setEventListeners() {
     // Close modal Via close button
-    this._modalCLoseButton = this.modal.querySelector(".modal__close-button");
+    this._modalCLoseButton = this._modal.querySelector(".modal__close-button");
     this._modalCLoseButton.addEventListener("click", this.close());
 
     // Close modal via overlay click
