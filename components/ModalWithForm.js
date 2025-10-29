@@ -1,20 +1,16 @@
-import Modal from "./Modal.js";
-
 export default class ModalWithForm extends Modal {
   constructor(modalSelector, handleFormSubmit) {
     super(modalSelector);
     this._handleFormSubmit = handleFormSubmit;
-
     this._form = this._modal.querySelector(".modal__form");
-    this._inputList = this._form.querySelectorAll(".modal__input");
-    this._firstInput = this._inputList[0];
-    this._secondInput = this._inputList[1];
   }
 
   _getInputValues() {
+    this._inputList = this._form.querySelectorAll(".modal__input");
+
     const data = {
-      firstInput: this._firstInput.value,
-      secondInput: this._secondInput.value,
+      firstInput: this._inputList[0].value,
+      secondInput: this._inputList[1].value,
     };
     return data;
   }
