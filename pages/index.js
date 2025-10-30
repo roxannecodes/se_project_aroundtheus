@@ -102,7 +102,7 @@ addCardButton.addEventListener("click", () => {
   cardModal.open();
 });
 
-function submitProfileForm(inputValues) {
+function submitCardForm(inputValues) {
   const data = {
     name: inputValues.firstInput,
     link: inputValues.secondInput,
