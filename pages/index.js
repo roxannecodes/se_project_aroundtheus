@@ -1,8 +1,9 @@
 //TODO: import modules
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import ModalWithImage from "../components/ModalWithImage.js";
 import Section from "../components/Section.js";
+import ModalWithImage from "../components/ModalWithImage.js";
+import ModalWithForm from "../components/ModalWithForm.js";
 
 //TODO: store initial cards' data into an array of objects
 
@@ -44,65 +45,78 @@ const config = {
   errorClass: "modal__input-error_active",
 };
 
-// TODO: Declare PROFILE section & modal DOM variables
+// TODO: Declare profile section & modal DOM variables
 
 const profileInfo = document.querySelector(".profile__info");
 const profileName = profileInfo.querySelector(".profile__name");
 const profileEditButton = profileInfo.querySelector(".profile__edit-button");
 const profileDescription = profileInfo.querySelector(".profile__description");
 
-const profileModal = document.querySelector("#profile-modal");
-const profileModalForm = profileModal.querySelector("#profile-form");
-const profileNameInput = profileModal.querySelector("#profile-name");
-const profileDescriptionInput = profileModal.querySelector(
+const profileModalForm = document.querySelector("#profile-form");
+const profileNameInput = profileModalForm.querySelector("#profile-name");
+const profileDescriptionInput = profileModalForm.querySelector(
   "#profile-description"
 );
 
-//TODO: Handle opening profile modal
+//TODO: Handle opening & submitting PROFILE MODAL
+
+// Instantiate subclass & initalize
+const profileModal = new ModalWithForm("#profile-modal", submitProfileForm);
+profileModal.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-  openModal(profileModal);
+  profileModal.open();
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 });
 
-//TODO: Handle submitting profile modal form
+function submitProfileForm(values) {
+  profileName.textContent = values.firstInput;
+  profileDescription.textContent = values.secondInput;
 
-profileModalForm.addEventListener("submit", submitProfileModal);
-
-function submitProfileModal(evt) {
-  evt.preventDefault();
-
-  profileName.textContent = profileNameInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-
-  closeModal(profileModal);
+  profileModal.close();
 
   profileFormValidation.resetValidation();
 }
 
-//TODO: handle opening new card modal
+//TODO: Declare CARD section & modal DOM variables
 
 const addCardButton = document.querySelector(".profile__add-button");
-
-addCardButton.addEventListener("click", () => {
-  openModal(cardModal);
-});
-
-//TODO:  Handle creating a new card
-
-const cardModal = document.querySelector("#card-modal");
-const cardTitleInput = cardModal.querySelector("#card-title");
-const cardImageInput = cardModal.querySelector("#card-image");
-
 const cardsContainer = document.querySelector(".cards__list");
+const cardModalForm = document.querySelector("#card-form");
+
+//TODO:  Create new card fxn
 
 function createCard(data) {
   const card = new Card(data, "#card-template", openPreviewModal);
   return card.generateCard();
 }
 
-//TODO: Handle rendering inital cards when page loads
+//TODO: handle opening & submitting adding new CARD MODAL
+
+// Instantiate subclass & initalize
+const cardModal = new ModalWithForm("#card-modal", submitCardForm);
+cardModal.setEventListeners();
+
+addCardButton.addEventListener("click", () => {
+  cardModal.open();
+});
+
+function submitProfileForm(inputValues) {
+  const data = {
+    name: inputValues.firstInput,
+    link: inputValues.secondInput,
+  };
+
+  const cardElement = createCard(data);
+  cardsContainer.prepend(cardElement);
+
+  cardModal.close();
+
+  cardFormValidation.resetValidation();
+}
+
+//TODO: Render inital cards when page loads
 
 const initialCardList = new Section(
   {
@@ -117,30 +131,10 @@ const initialCardList = new Section(
 
 initialCardList.renderItems();
 
-// TODO: handle submitting card modal form
-
-const cardModalForm = document.querySelector("#card-form");
-
-cardModalForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-
-  const data = {
-    name: cardTitleInput.value,
-    link: cardImageInput.value,
-  };
-
-  const cardElement = createCard(data);
-  cardsContainer.prepend(cardElement);
-
-  closeModal(cardModal);
-
-  cardFormValidation.resetValidation();
-});
-
 //TODO:  Handle opening preview modal on card image click
 
+// Instantiate subclass & initalize
 const previewModal = new ModalWithImage("#preview-modal");
-
 previewModal.setEventListeners();
 
 function openPreviewModal(data) {
