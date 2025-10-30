@@ -64,15 +64,18 @@ const profileDescriptionInput = profileModalForm.querySelector(
 const profileModal = new ModalWithForm("#profile-modal", submitProfileForm);
 profileModal.setEventListeners();
 
+// Open modal
 profileEditButton.addEventListener("click", () => {
   profileModal.open();
-  profileNameInput.value = profileName.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  const currentUserInfo = UserInfo.getUserInfo();
+  profileNameInput.value = currentUserInfo.name;
+  profileDescriptionInput.value = currentUserInfo.title;
 });
 
-function submitProfileForm(values) {
-  profileName.textContent = values.firstInput;
-  profileDescription.textContent = values.secondInput;
+// Submit form
+function submitProfileForm(data) {
+
+  UserInfo.setUserInfo(data)
 
   profileModal.close();
 
