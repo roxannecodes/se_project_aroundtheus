@@ -33,8 +33,8 @@ export default class Card {
   }
 
   generateCard() {
-    this._element = this._template
-      .content.querySelector(".card")
+    this._element = this._template.content
+      .querySelector(".card")
       .cloneNode(true);
     this._cardTitle = this._element.querySelector(".card__title");
     this._cardImage = this._element.querySelector(".card__image");
