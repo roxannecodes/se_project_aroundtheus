@@ -6,45 +6,14 @@ import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
-//TODO: store initial cards' data into an array of objects
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-//TODO: Declare properties of the settings object for configuring Form Validation
-
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__input-error_active",
-};
+import {
+  initialCards,
+  config,
+  profileEditButton,
+  profileNameInput,
+  profileDescriptionInput,
+  addCardButton,
+} from "../utils/constants.js";
 
 //TODO: Handle opening & submitting PROFILE MODAL
 
@@ -58,11 +27,6 @@ const profileModal = new ModalWithForm("#profile-modal", submitProfileForm);
 profileModal.setEventListeners();
 
 // Open edit profile modal
-const profileEditButton = document.querySelector(".profile__edit-button");
-
-const profileNameInput = document.querySelector("#profile-name");
-const profileDescriptionInput = document.querySelector("#profile-description");
-
 profileEditButton.addEventListener("click", () => {
   profileModal.open();
   const currentUserInfo = userInfo.getUserInfo();
@@ -109,8 +73,6 @@ const cardModal = new ModalWithForm("#card-modal", submitCardForm);
 cardModal.setEventListeners();
 
 // Open new card modal
-const addCardButton = document.querySelector(".profile__add-button");
-
 addCardButton.addEventListener("click", () => {
   cardModal.open();
 });
@@ -135,10 +97,10 @@ function openPreviewModal(data) {
   previewModal.open(data);
 }
 
-//TODO: instantiation of the FormValidator class
+//TODO: instantiating & enabling form validators
 
-const profileModalForm = document.querySelector("#profile-form");
-const cardModalForm = document.querySelector("#card-form");
+const profileModalForm = profileModal.getForm();
+const cardModalForm = cardModal.getForm();
 
 const profileFormValidation = new FormValidator(config, profileModalForm);
 profileFormValidation.enableValidation();
