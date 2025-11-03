@@ -4,27 +4,20 @@ export default class Modal {
   }
   open() {
     this._modal.classList.add("modal_opened");
-    document.addEventListener("keydown", () => {
-      this._handleEscClose();
-    });
+    document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
     this._modal.classList.remove("modal_opened");
-    document.removeEventListener("keydown", () => {
-      this._handleEscClose();
-    });
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  _handleEscClose(evt) {
+  _handleEscClose = (evt) => {
     // Close modal via  Esc key
     if (evt.key === "Escape") {
-      const openModal = document.querySelector(".modal_opened");
-      if (openModal) {
-        this.close();
-      }
+      this.close();
     }
-  }
+  };
 
   setEventListeners() {
     // Close modal Via close button
