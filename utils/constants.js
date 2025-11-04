@@ -38,17 +38,12 @@ export const config = {
   errorClass: "modal__input-error_active",
 };
 
-//Todo: Vars for editing profile
+//Todo:  Declare edit profile button
 
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
 
-export const profileNameInput = document.querySelector("#profile-name");
-export const profileDescriptionInput = document.querySelector(
-  "#profile-description"
-);
-
-//Todo: Button for adding new cards
+//Todo: Declare add card button
 
 export const addCardButton = document.querySelector(".profile__add-button");

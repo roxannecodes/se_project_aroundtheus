@@ -10,8 +10,6 @@ import {
   initialCards,
   config,
   profileEditButton,
-  profileNameInput,
-  profileDescriptionInput,
   addCardButton,
 } from "../utils/constants.js";
 
@@ -29,9 +27,10 @@ profileModal.setEventListeners();
 // Open edit profile modal
 profileEditButton.addEventListener("click", () => {
   profileModal.open();
-  const currentUserInfo = userInfo.getUserInfo();
-  profileNameInput.value = currentUserInfo.name;
-  profileDescriptionInput.value = currentUserInfo.title;
+
+  const currentInfo = userInfo.getUserInfo();
+
+  profileModal.setInputValues(currentInfo);
 });
 
 // Submit profile modal form
@@ -78,8 +77,8 @@ addCardButton.addEventListener("click", () => {
 });
 
 //Submit new card modal form
-function submitCardForm(inputValues) {
-  const cardElement = createCard(inputValues);
+function submitCardForm(data) {
+  const cardElement = createCard(data);
   cardList.addItem(cardElement);
 
   cardModal.close();
