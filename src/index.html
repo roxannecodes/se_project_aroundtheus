@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Around the US</title>
@@ -14,14 +14,18 @@
   <body class="page">
     <div class="page__wrapper">
       <header class="header page__section">
-        <img class="header__logo" src="./images/logo.svg" alt="Page Logo" />
+        <img
+          class="header__logo"
+          src="<%=require('./images/logo.svg')%>"
+          alt="Page Logo"
+        />
       </header>
 
       <main class="content">
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/profile.jpg"
+            src="<%=require('./images/profile.jpg')%>"
             alt="Profile Photo"
           />
           <div class="profile__info">
