@@ -4,20 +4,20 @@ export default class Modal {
   }
   open() {
     this._modal.classList.add("modal_opened");
-    document.addEventListener("keydown", this._handleEscClose);
+    // document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
     this._modal.classList.remove("modal_opened");
-    document.removeEventListener("keydown", this._handleEscClose);
+    // document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  _handleEscClose = (evt) => {
-    // Close modal via  Esc key
-    if (evt.key === "Escape") {
-      this.close();
-    }
-  };
+  // _handleEscClose = (evt) => {
+  //   // Close modal via  Esc key
+  //   if (evt.key === "Escape") {
+  //     this.close();
+  //   }
+  // };
 
   setEventListeners() {
     // Close modal Via close button
@@ -29,6 +29,13 @@ export default class Modal {
     // Close modal via overlay click
     this._modal.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("modal")) {
+        this.close();
+      }
+    });
+
+    // Close modal via  Esc key
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape") {
         this.close();
       }
     });
