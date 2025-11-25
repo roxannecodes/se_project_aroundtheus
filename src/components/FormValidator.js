@@ -15,7 +15,7 @@ export default class FormValidator {
 
   _checkInputValidity(inputElement) {
     const errorElement = this._formElement.querySelector(
-      `.${inputElement.id}-error`,
+      `.${inputElement.id}-error`
     );
     if (!inputElement.validity.valid) {
       inputElement.classList.add(this._inputErrorClass);
@@ -37,6 +37,7 @@ export default class FormValidator {
       this._submitButton.disabled = false;
     }
   }
+
   _setEventListeners() {
     this._toggleButtonState();
 
@@ -46,6 +47,16 @@ export default class FormValidator {
         this._toggleButtonState();
       });
     });
+    //Add enter keydown listener to inputs when all inputs are valid
+    if (this._inputList.every((input) => input.validity.valid)) {
+      this._inputList.forEach((inputElement) => {
+        inputElement.addEventListener("keydown", (evt) => {
+          if (evt.key === "Enter") {
+            this._submitButton.click();
+          }
+        });
+      });
+    }
   }
 
   enableValidation() {
