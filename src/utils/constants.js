@@ -37,13 +37,3 @@ export const config = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__input-error_active",
 };
-
-//Todo:  Declare edit profile button
-
-export const profileEditButton = document.querySelector(
-  ".profile__edit-button"
-);
-
-//Todo: Declare add card button
-
-export const addCardButton = document.querySelector(".profile__add-button");
