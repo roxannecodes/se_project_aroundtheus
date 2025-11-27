@@ -8,15 +8,45 @@ import Section from "../components/Section.js";
 import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-
+import Api from "../components/Api.js";
 import { initialCards, config } from "../utils/constants.js";
 
-//TODO: Handle opening & submitting [PROFILE MODAL]
+//TODO: Create new user info
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   titleSelector: ".profile__description",
 });
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "4a9d2b77-fdc3-443b-b9f6-848c3f9e0ab5",
+    "Content-Type": "application/json",
+  },
+});
+
+function renderPage() {
+  return Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userInfoData, initialCardsData]) => {
+      console.log(userInfoData);
+      console.log(initialCardsData);
+
+      userInfo.setUserInfo({
+        name: userInfoData.name,
+        description: userInfoData.about,
+      });
+      renderCardsList(initialCardsData);
+    })
+    .catch((error) => {
+      console.error("Problem rendering cards.", error);
+    });
+}
+
+// Initial render of user profile & cards
+renderPage();
+
+//TODO: Handle opening & submitting [PROFILE MODAL]
 
 // Instantiate subclass & initalize
 const profileModal = new ModalWithForm("#profile-modal", submitProfileForm);
@@ -51,7 +81,7 @@ addCardButton.addEventListener("click", () => {
   cardModal.open();
 });
 
-//Submit new card modal form
+//[Submit new card modal form
 function submitCardForm(data) {
   const cardElement = createCard(data);
   cardList.addItem(cardElement);
