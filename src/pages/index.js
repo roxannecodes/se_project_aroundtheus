@@ -9,15 +9,36 @@ import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-import { initialCards, config } from "../utils/constants.js";
 
-//TODO: Create new user info
+// TODO: Fetch user info and initial cards from API and render them
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__name",
-  titleSelector: ".profile__description",
-});
+function renderPage() {
+  return Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userInfoObj, initialCardsArr]) => {
+      //render user info
+      userInfo.setUserInfo({
+        name: userInfoObj.name,
+        description: userInfoObj.about,
+      });
+      //Instantiate & initialize Section class for rendering initial cards
+      const cardList = new Section(
+        {
+          items: initialCardsArr,
+          renderer: (item) => {
+            const cardElement = createCard(item);
+            cardList.addItem(cardElement);
+          },
+        },
+        ".cards__list"
+      );
+      cardList.renderItems();
+    })
+    .catch((error) => {
+      console.error("Problem rendering cards.", error);
+    });
+}
 
+// Instantiate class for API interactions
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -26,24 +47,13 @@ const api = new Api({
   },
 });
 
-function renderPage() {
-  return Promise.all([api.getUserInfo(), api.getInitialCards()])
-    .then(([userInfoData, initialCardsData]) => {
-      console.log(userInfoData);
-      console.log(initialCardsData);
+//Instantiate class for getting/setting user info
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  titleSelector: ".profile__description",
+});
 
-      userInfo.setUserInfo({
-        name: userInfoData.name,
-        description: userInfoData.about,
-      });
-      renderCardsList(initialCardsData);
-    })
-    .catch((error) => {
-      console.error("Problem rendering cards.", error);
-    });
-}
-
-// Initial render of user profile & cards
+// Initial render of user profile & cards on page load
 renderPage();
 
 //TODO: Handle opening & submitting [PROFILE MODAL]
@@ -68,20 +78,20 @@ function submitProfileForm(data) {
   profileFormValidation.resetValidation();
 }
 
-//TODO: handle opening & submitting [ADD CARD MODAL]
+//TODO: handle opening & submitting [ADD-CARD MODAL]
 
 // Instantiate subclass & initalize
 const cardModal = new ModalWithForm("#card-modal", submitCardForm);
 cardModal.setEventListeners();
 
-// Open new card modal
+// ** Open ** add-card modal
 const addCardButton = document.querySelector(".profile__add-button");
 
 addCardButton.addEventListener("click", () => {
   cardModal.open();
 });
 
-//[Submit new card modal form
+// ** Submit **  add-card modal form
 function submitCardForm(data) {
   const cardElement = createCard(data);
   cardList.addItem(cardElement);
@@ -106,24 +116,16 @@ function createCard(data) {
   return card.generateCard();
 }
 
-//TODO: Instantiate & initalize class for [Rendering cards]
-
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      cardList.addItem(cardElement);
-    },
-  },
-  ".cards__list"
-);
-
-// Render Inital cards when page loads
-cardList.renderItems();
-
 //TODO: instantiating & enabling [form validator] for both modals
 
+export const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__input-error_active",
+};
 const profileModalForm = profileModal.getForm();
 const cardModalForm = cardModal.getForm();
 
