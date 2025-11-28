@@ -73,9 +73,19 @@ profileEditButton.addEventListener("click", () => {
 
 // Submit profile modal form
 function submitProfileForm(data) {
-  userInfo.setUserInfo(data);
-  profileModal.close();
-  profileFormValidation.resetValidation();
+  api
+    .editUserInfo(data)
+    .then((updatedUserInfo) => {
+      userInfo.setUserInfo({
+        name: updatedUserInfo.name,
+        description: updatedUserInfo.about,
+      });
+      profileModal.close();
+      profileFormValidation.resetValidation();
+    })
+    .catch((error) => {
+      console.error("Failed to update user info:", error);
+    });
 }
 
 //TODO: handle opening & submitting [ADD-CARD MODAL]
@@ -134,3 +144,34 @@ profileFormValidation.enableValidation();
 
 const cardFormValidation = new FormValidator(config, cardModalForm);
 cardFormValidation.enableValidation();
+
+// Post initial cards data --- IGNORE ---
+
+// export const initialCards = [
+//   {
+//     name: "Yosemite Valley",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+//   },
+//   {
+//     name: "Lake Louise",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+//   },
+//   {
+//     name: "Bald Mountains",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+//   },
+//   {
+//     name: "Latemar",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+//   },
+//   {
+//     name: "Vanoise National Park",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+//   },
+//   {
+//     name: "Lago di Braies",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+//   },
+// ];
+
+// End of initial cards data --- IGNORE ---
