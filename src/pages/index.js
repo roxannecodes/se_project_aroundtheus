@@ -12,6 +12,8 @@ import Api from "../components/Api.js";
 
 // TODO: Fetch user info and initial cards from API and render them
 
+let cardList; // to hold Section instance for cards
+
 function renderPage() {
   return Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userInfoObj, initialCardsArr]) => {
@@ -21,7 +23,7 @@ function renderPage() {
         description: userInfoObj.about,
       });
       //Instantiate & initialize Section class for rendering initial cards
-      const cardList = new Section(
+      cardList = new Section(
         {
           items: initialCardsArr,
           renderer: (item) => {
@@ -103,10 +105,17 @@ addCardButton.addEventListener("click", () => {
 
 // ** Submit **  add-card modal form
 function submitCardForm(data) {
-  const cardElement = createCard(data);
-  cardList.addItem(cardElement);
-  cardModal.close();
-  cardFormValidation.resetValidation();
+  api
+    .addNewCard(data)
+    .then((newCardData) => {
+      const cardElement = createCard(newCardData);
+      cardList.addItem(cardElement);
+      cardModal.close();
+      cardFormValidation.resetValidation();
+    })
+    .catch((error) => {
+      console.error("Failed to add new card:", error);
+    });
 }
 
 //TODO:  Handle opening [PREVIEW MODAL] on card image click
@@ -144,34 +153,3 @@ profileFormValidation.enableValidation();
 
 const cardFormValidation = new FormValidator(config, cardModalForm);
 cardFormValidation.enableValidation();
-
-// Post initial cards data --- IGNORE ---
-
-// export const initialCards = [
-//   {
-//     name: "Yosemite Valley",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-//   },
-//   {
-//     name: "Lake Louise",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-//   },
-//   {
-//     name: "Bald Mountains",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-//   },
-//   {
-//     name: "Latemar",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-//   },
-//   {
-//     name: "Vanoise National Park",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-//   },
-//   {
-//     name: "Lago di Braies",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-//   },
-// ];
-
-// End of initial cards data --- IGNORE ---

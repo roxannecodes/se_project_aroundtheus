@@ -15,6 +15,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then((res) => {
+      //if ok => res.json()
       return this.checkResponse(res);
     });
   }
@@ -23,10 +24,11 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => {
+      //if ok => res.json()
       return this.checkResponse(res);
     });
   }
-
+//TODO: 
   editUserInfo({ name, description }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -36,7 +38,24 @@ export default class Api {
         about: description,
       }),
     }).then((res) => {
+      //if ok => res.json()
       return this.checkResponse(res);
     });
   }
+
+  addNewCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    }).then((res) => {
+      //if ok => res.json()
+      return this.checkResponse(res);
+    });
+  }
+  
 }
+
