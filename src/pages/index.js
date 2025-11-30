@@ -128,6 +128,30 @@ function openPreviewModal(data) {
   previewModal.open(data);
 }
 
+ //TODO: Handle opening & submitting [CONFIRMATION MODAL]  
+ 
+ //instantiate subclass & initalize  
+ const confirmationModal = new ModalWithForm(
+   "#confirmation-modal",
+   submitConfirmationForm
+ );
+ confirmationModal.setEventListeners();
+ 
+ //Open confirmation modal on delete button click in Card class
+ 
+ function openConfirmationModal() {
+   confirmationModal.open();
+ }
+ 
+ // Submit confirmation modal form to delete card
+ 
+ function submitConfirmationForm() {
+   //call API to delete the card from the server
+   // and then remove it from the DOM if the API call is successful.
+   confirmationModal.close();
+ }
+
+
 //TODO:  Create [new card function]
 
 function createCard(data) {
