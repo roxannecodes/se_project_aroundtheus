@@ -25,7 +25,7 @@ function renderPage() {
       //Instantiate & initialize Section class for rendering initial cards
       cardList = new Section(
         {
-          items: initialCardsArr,
+          items: initialCardsArr.reverse(),
           renderer: (item) => {
             const cardElement = createCard(item);
             cardList.addItem(cardElement);
