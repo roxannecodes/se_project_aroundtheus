@@ -13,26 +13,18 @@ export default class FormValidator {
     this._submitButton = this._formElement.querySelector(this._submitSelector);
   }
 
-  _showErrors() {
-    inputElement.classList.add(this._inputErrorClass);
-    errorElement.textContent = inputElement.validationMessage;
-    errorElement.classList.add(this._errorClass);
-  }
-
-  _hideErrors() {
-    inputElement.classList.remove(this._inputErrorClass);
-    errorElement.classList.remove(this._errorClass);
-    errorElement.textContent = "";
-  }
-
   _checkInputValidity(inputElement) {
     const errorElement = this._formElement.querySelector(
       `.${inputElement.id}-error`
     );
     if (!inputElement.validity.valid) {
-      this._showErrors();
+      inputElement.classList.add(this._inputErrorClass);
+      errorElement.textContent = inputElement.validationMessage;
+      errorElement.classList.add(this._errorClass);
     } else {
-      this._hideErrors();
+      inputElement.classList.remove(this._inputErrorClass);
+      errorElement.classList.remove(this._errorClass);
+      errorElement.textContent = "";
     }
   }
 
@@ -73,7 +65,6 @@ export default class FormValidator {
 
   resetValidation() {
     this._formElement.reset();
-    this._hideErrors();
     this._toggleButtonState();
   }
 }
