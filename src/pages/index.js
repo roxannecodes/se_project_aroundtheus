@@ -67,8 +67,11 @@ profileModal.setEventListeners();
 // Open edit profile modal
 const profileEditButton = document.querySelector(".profile__edit-button");
 
+const profileModalForm = profileModal.getForm();
+
 profileEditButton.addEventListener("click", () => {
   profileModal.open();
+  profileModalForm.resetValidation();
   const currentInfo = userInfo.getUserInfo();
   profileModal.setInputValues(currentInfo);
 });
@@ -99,8 +102,12 @@ cardModal.setEventListeners();
 // ** Open ** add-card modal
 const addCardButton = document.querySelector(".profile__add-button");
 
+const cardModalForm = cardModal.getForm();
+
 addCardButton.addEventListener("click", () => {
   cardModal.open();
+
+  cardModalForm.resetValidation();
 });
 
 // ** Submit **  add-card modal form
@@ -169,8 +176,6 @@ export const config = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__input-error_active",
 };
-const profileModalForm = profileModal.getForm();
-const cardModalForm = cardModal.getForm();
 
 const profileFormValidation = new FormValidator(config, profileModalForm);
 profileFormValidation.enableValidation();
