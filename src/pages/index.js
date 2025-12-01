@@ -14,6 +14,8 @@ import Api from "../components/Api.js";
 
 let cardList; // to hold Section instance for cards
 
+let cardToDelete;
+
 function renderPage() {
   return Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userInfoObj, initialCardsArr]) => {
@@ -129,34 +131,47 @@ function openPreviewModal(data) {
   previewModal.open(data);
 }
 
- //TODO: Handle opening & submitting [CONFIRMATION MODAL]  
- 
- //instantiate subclass & initalize  
- const confirmationModal = new ModalWithForm(
-   "#confirmation-modal",
-   submitConfirmationForm
- );
- confirmationModal.setEventListeners();
- 
- //Open confirmation modal on delete button click in Card class
- 
- function openConfirmationModal() {
-   confirmationModal.open();
- }
- 
- // Submit confirmation modal form to delete card
- 
- function submitConfirmationForm() {
-   //call API to delete the card from the server
-   // and then remove it from the DOM if the API call is successful.
-   confirmationModal.close();
- }
+//TODO: Handle opening & submitting [CONFIRMATION MODAL]
 
+//instantiate subclass & initalize
+const confirmationModal = new ModalWithForm(
+  "#confirmation-modal",
+  submitConfirmationForm
+);
+confirmationModal.setEventListeners();
+
+ //Open confirmation modal on delete button click in Card class
+
+function openConfirmationModal(card) {
+  cardToDelete = card;
+  confirmationModal.open();
+  confirmationModal.setInputValues({ cardId: card.cardId });
+}
+
+// Submit confirmation modal form to delete card
+
+function submitConfirmationForm(data) {
+    //call API to delete the card from the server
+   // and then remove it from the DOM if the API call is successful.
+  api.deleteCard(data.cardId).then(() => {
+    cardToDelete.removeCard();
+    cardToDelete=null;
+    confirmationModal.close();
+  })
+  .catch((error)=>{
+console.error("Failed to delete card!")
+  });
+}
 
 //TODO:  Create [new card function]
 
 function createCard(data) {
-  const card = new Card(data, "#card-template", openPreviewModal);
+  const card = new Card(
+    data,
+    "#card-template",
+    openPreviewModal,
+    openConfirmationModal
+  );
   return card.generateCard();
 }
 

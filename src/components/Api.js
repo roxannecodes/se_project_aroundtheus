@@ -5,7 +5,6 @@ export default class Api {
   }
 
   checkResponse(res) {
-    console.log(res);
     if (res.ok) {
       return res.json();
     }
@@ -28,7 +27,7 @@ export default class Api {
       return this.checkResponse(res);
     });
   }
-//TODO: 
+
   editUserInfo({ name, description }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -56,6 +55,15 @@ export default class Api {
       return this.checkResponse(res);
     });
   }
-  
-}
 
+  deleteCard(cardId) {
+    return fetch(
+      `${this._baseUrl}/cards/${cardId}
+      `,
+      {
+        method: "DELETE",
+        headers: this._headers,
+      }
+    ).then((res) => this.checkResponse(res));
+  }
+}

@@ -150,11 +150,13 @@
           class="modal__close-button"
           id="card-close"
         ></button>
+
         <h2 class="modal__heading modal__heading_type_confirmation">
           Are you sure?
         </h2>
 
         <form class="modal__form" id="card-form" novalidate>
+          <input class="modal__input" type="hidden" id="cardId" name="cardId" />
           <button type="submit" class="modal__save-button">Yes</button>
         </form>
       </div>
