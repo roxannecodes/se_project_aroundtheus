@@ -71,6 +71,7 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 
 profileEditButton.addEventListener("click", () => {
   profileModal.open();
+  profileFormValidation.resetValidation();
   const currentInfo = userInfo.getUserInfo();
   profileModal.setInputValues(currentInfo);
 });
@@ -101,9 +102,9 @@ cardModal.setEventListeners();
 // ** Open ** add-card modal
 const addCardButton = document.querySelector(".profile__add-button");
 
-
 addCardButton.addEventListener("click", () => {
   cardModal.open();
+  cardFormValidation.resetValidation();
 });
 
 // ** Submit **  add-card modal form
@@ -140,7 +141,7 @@ const confirmationModal = new ModalWithForm(
 );
 confirmationModal.setEventListeners();
 
- //Open confirmation modal on delete button click in Card class
+//Open confirmation modal on delete button click in Card class
 
 function openConfirmationModal(card) {
   cardToDelete = card;
@@ -151,16 +152,18 @@ function openConfirmationModal(card) {
 // Submit confirmation modal form to delete card
 
 function submitConfirmationForm(data) {
-    //call API to delete the card from the server
-   // and then remove it from the DOM if the API call is successful.
-  api.deleteCard(data.cardId).then(() => {
-    cardToDelete.removeCard();
-    cardToDelete=null;
-    confirmationModal.close();
-  })
-  .catch((error)=>{
-console.error("Failed to delete card!")
-  });
+  //call API to delete the card from the server
+  // and then remove it from the DOM if the API call is successful.
+  api
+    .deleteCard(data.cardId)
+    .then(() => {
+      cardToDelete.removeCard();
+      cardToDelete = null;
+      confirmationModal.close();
+    })
+    .catch((error) => {
+      console.error("Failed to delete card!");
+    });
 }
 
 //TODO:  Create [new card function]
@@ -185,8 +188,8 @@ export const config = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__input-error_active",
 };
-const profileModalForm = profileModal.getForm();
-const cardModalForm = cardModal.getForm();
+const profileModalForm = document.forms["profile-form"];
+const cardModalForm = document.forms["card-form"];
 
 const profileFormValidation = new FormValidator(config, profileModalForm);
 profileFormValidation.enableValidation();

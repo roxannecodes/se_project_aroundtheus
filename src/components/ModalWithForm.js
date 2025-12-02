@@ -30,8 +30,4 @@ export default class ModalWithForm extends Modal {
       this._handleFormSubmit(this._getInputValues());
     });
   }
-
-  getForm() {
-    return this._form;
-  }
 }
