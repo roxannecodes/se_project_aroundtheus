@@ -13,19 +13,13 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then((res) => {
-      //if ok => res.json()
-      return this.checkResponse(res);
-    });
+    }).then((res) => this.checkResponse(res));
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      //if ok => res.json()
-      return this.checkResponse(res);
-    });
+    }).then((res) => this.checkResponse(res));
   }
 
   editUserInfo({ name, description }) {
@@ -36,10 +30,7 @@ export default class Api {
         name: name,
         about: description,
       }),
-    }).then((res) => {
-      //if ok => res.json()
-      return this.checkResponse(res);
-    });
+    }).then((res) => this.checkResponse(res));
   }
 
   addNewCard({ name, link }) {
@@ -50,20 +41,27 @@ export default class Api {
         name: name,
         link: link,
       }),
-    }).then((res) => {
-      //if ok => res.json()
-      return this.checkResponse(res);
-    });
+    }).then((res) => this.checkResponse(res));
   }
 
   deleteCard(cardId) {
-    return fetch(
-      `${this._baseUrl}/cards/${cardId}
-      `,
-      {
-        method: "DELETE",
-        headers: this._headers,
-      }
-    ).then((res) => this.checkResponse(res));
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => this.checkResponse(res));
+  }
+
+  likeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then((res) => this.checkResponse(res));
+  }
+
+  unlikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => this.checkResponse(res));
   }
 }

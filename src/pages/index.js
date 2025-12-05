@@ -182,6 +182,38 @@ function submitConfirmationForm(data) {
     });
 }
 
+// TODO: handle [card like-button]
+
+function handleCardLike(card) {
+  // If card is already liked, call API w/DELETE request
+  if (card.isLiked) {
+    api
+      .unlikeCard(card.cardId)
+      .then(() => {
+        // then render flipped like state on page
+        card.toggleCardLike();
+        // and flip the internal like status
+        card.isLiked = !card.isLiked;
+      })
+      .catch((error) => {
+        console.error("Failed to dislike card:", error);
+      });
+  } else {
+    // If card is NOT already liked, call API w/PUT request
+    api
+      .likeCard(card.cardId)
+      .then(() => {
+        // then render flipped like state on page
+        card.toggleCardLike();
+        // and flip the internal like status
+        card.isLiked = !card.isLiked;
+      })
+      .catch((error) => {
+        console.error("Failed to like card:", error);
+      });
+  }
+}
+
 //TODO:  Create [new card function]
 
 function createCard(data) {
@@ -189,7 +221,8 @@ function createCard(data) {
     data,
     "#card-template",
     openPreviewModal,
-    openConfirmationModal
+    openConfirmationModal,
+    handleCardLike
   );
   return card.generateCard();
 }
