@@ -63,6 +63,21 @@ function renderPage() {
 // Inital call to render current user info & cards list
 renderPage();
 
+//TODO: Handle opening and submitting [EDIT PROFILE PIC MODAL]
+
+const avatarModal = new ModalWithForm("#avatar-modal", submitAvatarForm);
+
+avatarModal.setEventListeners();
+
+function submitAvatarForm(data) {
+  avatarModal.close();
+}
+const editAvatarButton = document.querySelector(".profile__image");
+
+editAvatarButton.addEventListener("click", () => {
+  avatarModal.open();
+});
+
 //TODO: Handle opening & submitting [PROFILE MODAL]
 
 // Instantiate edit profile popup subclass
@@ -242,10 +257,13 @@ const config = {
 // Search for the forms
 const profileModalForm = document.forms["profile-form"];
 const cardModalForm = document.forms["card-form"];
+const avatarForm = document.forms["avatar-form"];
 
-//Instantiate validation for both forms
+//Instantiate validation for all forms
 const profileFormValidation = new FormValidator(config, profileModalForm);
 const cardFormValidation = new FormValidator(config, cardModalForm);
+const avatarFormValidation = new FormValidator(config, avatarForm);
 // and enable them when the page loads
 profileFormValidation.enableValidation();
 cardFormValidation.enableValidation();
+avatarFormValidation.enableValidation();
