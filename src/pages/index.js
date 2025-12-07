@@ -36,12 +36,12 @@ function renderPage() {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       // and then, if successfully reached:
       .then(([userInfoObj, initialCardsArr]) => {
-            // Render user info 
-            userInfo.setUserInfo({
-              name: userInfoObj.name,
-              description: userInfoObj.about,
-              avatar: userInfoObj.avatar,
-            });
+        // Render user info
+        userInfo.setUserInfo({
+          name: userInfoObj.name,
+          description: userInfoObj.about,
+          avatar: userInfoObj.avatar,
+        });
         // Instantiate Section class for creating the cards and adding them to the DOM
         cardList = new Section(
           {
@@ -68,19 +68,26 @@ renderPage();
 //TODO: Handle opening and submitting [EDIT AVATAR MODAL]
 
 // Instantiate edit avatar popup subclass
-const avatarModal = new ModalWithForm("#avatar-modal",submitAvatarForm);
-//and initialize it for handling loading & form submit 
+const avatarModal = new ModalWithForm("#avatar-modal", submitAvatarForm);
+//and initialize it for handling loading & form submit
 avatarModal.setEventListeners();
 
-// handle avatar click for changing users profile image
+// ** open ** edit avatar modal
+
 const avatar = document.querySelector(".profile__image");
+
 avatar.addEventListener("click", () => {
   avatarModal.open();
   avatarFormValidation.resetValidation();
 });
 
+// ** submit ** form for changing avatar image in profile
+
 function submitAvatarForm(link) {
-  // Call api with PATCH request 
+  // render loading status on submit btn text
+  avatarModal.renderLoading(true);
+
+  // Call api with PATCH request
   api
     .editAvatar(link)
     // then render new avatar image in profile
@@ -90,6 +97,9 @@ function submitAvatarForm(link) {
     })
     .catch((error) => {
       console.error("Failed to update avatar:", error);
+    })
+    .finally(() => {
+      avatarModal.renderLoading(false);
     });
 }
 
@@ -101,6 +111,7 @@ const profileModal = new ModalWithForm("#profile-modal", submitProfileForm);
 profileModal.setEventListeners();
 
 // ** Open ** edit profile modal
+
 const profileEditButton = document.querySelector(".profile__edit-button");
 
 profileEditButton.addEventListener("click", () => {
@@ -114,7 +125,10 @@ profileEditButton.addEventListener("click", () => {
 });
 
 // ** Submit ** profile popup form to edit user's name & about info
+
 function submitProfileForm(data) {
+  // render loading status on submit btn text
+  profileModal.renderLoading(true);
   // Call api to access user's current profile data
   api
     .editUserInfo(data)
@@ -123,12 +137,15 @@ function submitProfileForm(data) {
       userInfo.setUserInfo({
         name: updatedUserInfo.name,
         description: updatedUserInfo.about,
-        avatar:updatedUserInfo.avatar
+        avatar: updatedUserInfo.avatar,
       });
       profileModal.close();
     })
     .catch((error) => {
       console.error("Failed to update user info:", error);
+    })
+    .finally(() => {
+      profileModal.renderLoading(false);
     });
 }
 
@@ -140,6 +157,7 @@ const cardModal = new ModalWithForm("#card-modal", submitCardForm);
 cardModal.setEventListeners();
 
 // ** Open ** new card modal
+
 const addCardButton = document.querySelector(".profile__add-button");
 
 addCardButton.addEventListener("click", () => {
@@ -148,7 +166,10 @@ addCardButton.addEventListener("click", () => {
 });
 
 // ** Submit ** the card popup form to add to page
+
 function submitCardForm(data) {
+  // render loading status on submit btn text
+  cardModal.renderLoading(true);
   //call api at the /cards endpoint to store card
   api
     .addNewCard(data)
@@ -161,6 +182,9 @@ function submitCardForm(data) {
     })
     .catch((error) => {
       console.error("Failed to add new card:", error);
+    })
+    .finally(() => {
+      cardModal.renderLoading(false);
     });
 }
 
@@ -187,6 +211,7 @@ const confirmationModal = new ModalWithForm(
 confirmationModal.setEventListeners();
 
 // ** Open ** confirmation modal on delete button click
+
 let cardToDelete;
 
 function openConfirmationModal(card) {
@@ -198,6 +223,8 @@ function openConfirmationModal(card) {
 // ** Submit ** confirmation modal form to delete card
 
 function submitConfirmationForm(data) {
+  // render loading status on submit btn text
+  confirmationModal.renderLoading(true);
   //call API to delete the card
   api
     .deleteCard(data.cardId)
@@ -209,6 +236,9 @@ function submitConfirmationForm(data) {
     })
     .catch((error) => {
       console.error(`Failed to delete card:${error}`);
+    })
+    .finally(() => {
+      confirmationModal.renderLoading(false);
     });
 }
 

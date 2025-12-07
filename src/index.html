@@ -22,16 +22,12 @@
 
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__image"
-            src="<%=require('./images/profile.jpg')%>"
-            alt="Profile Photo"
-          />
-          <div class="profile__edit-image"></div>
+          <img class="profile__image" src="" alt="Profile Photo" />
+          <div class="profile__edit-image" src=""></div>
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Coustea</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit-button"></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button class="profile__add-button"></button>
         </section>
@@ -97,7 +93,9 @@
             <span class="modal__input-error profile-description-error"> </span>
           </div>
 
-          <button type="submit" class="modal__save-button">Save</button>
+          <button type="submit" class="modal__save-button" name="Save">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -139,7 +137,9 @@
             />
             <span class="modal__input-error card-image-error"></span>
           </div>
-          <button type="submit" class="modal__save-button">Create</button>
+          <button type="submit" class="modal__save-button" name="Create">
+            Create
+          </button>
         </form>
       </div>
     </div>
@@ -161,7 +161,9 @@
             required
           />
           <span class="modal__input-error avatar-error"> </span>
-          <button type="submit" class="modal__save-button">Save</button>
+          <button type="submit" class="modal__save-button" name="Save">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -178,7 +180,9 @@
         </h2>
         <form class="modal__form" id="confirmation-form" novalidate>
           <input class="modal__input" type="hidden" id="cardId" name="cardId" />
-          <button type="submit" class="modal__save-button">Yes</button>
+          <button type="submit" class="modal__save-button" name="Yes">
+            Yes
+          </button>
         </form>
       </div>
     </div>
