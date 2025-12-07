@@ -123,6 +123,7 @@ function submitProfileForm(data) {
       userInfo.setUserInfo({
         name: updatedUserInfo.name,
         description: updatedUserInfo.about,
+        avatar:updatedUserInfo.avatar
       });
       profileModal.close();
     })
