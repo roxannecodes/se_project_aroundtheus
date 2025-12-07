@@ -23,6 +23,7 @@ const api = new Api({
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   titleSelector: ".profile__description",
+  avatarSelector: ".profile__image",
 });
 
 // TODO: Display the user's profile info and card posts when page loads
@@ -35,11 +36,12 @@ function renderPage() {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       // and then, if successfully reached:
       .then(([userInfoObj, initialCardsArr]) => {
-        // Render user info
-        userInfo.setUserInfo({
-          name: userInfoObj.name,
-          description: userInfoObj.about,
-        });
+            // Render user info 
+            userInfo.setUserInfo({
+              name: userInfoObj.name,
+              description: userInfoObj.about,
+              avatar: userInfoObj.avatar,
+            });
         // Instantiate Section class for creating the cards and adding them to the DOM
         cardList = new Section(
           {
@@ -63,20 +65,33 @@ function renderPage() {
 // Inital call to render current user info & cards list
 renderPage();
 
-//TODO: Handle opening and submitting [EDIT PROFILE PIC MODAL]
+//TODO: Handle opening and submitting [EDIT AVATAR MODAL]
 
-const avatarModal = new ModalWithForm("#avatar-modal", submitAvatarForm);
-
+// Instantiate edit avatar popup subclass
+const avatarModal = new ModalWithForm("#avatar-modal",submitAvatarForm);
+//and initialize it for handling loading & form submit 
 avatarModal.setEventListeners();
 
-function submitAvatarForm(data) {
-  avatarModal.close();
-}
-const editAvatarButton = document.querySelector(".profile__image");
-
-editAvatarButton.addEventListener("click", () => {
+// handle avatar click for changing users profile image
+const avatar = document.querySelector(".profile__image");
+avatar.addEventListener("click", () => {
   avatarModal.open();
+  avatarFormValidation.resetValidation();
 });
+
+function submitAvatarForm(link) {
+  // Call api with PATCH request 
+  api
+    .editAvatar(link)
+    // then render new avatar image in profile
+    .then((data) => {
+      avatar.src = data.avatar;
+      avatarModal.close();
+    })
+    .catch((error) => {
+      console.error("Failed to update avatar:", error);
+    });
+}
 
 //TODO: Handle opening & submitting [PROFILE MODAL]
 
@@ -110,7 +125,6 @@ function submitProfileForm(data) {
         description: updatedUserInfo.about,
       });
       profileModal.close();
-      profileFormValidation.resetValidation();
     })
     .catch((error) => {
       console.error("Failed to update user info:", error);
