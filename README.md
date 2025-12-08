@@ -165,4 +165,4 @@ Subsequent runs
 
 - This project could potentially benefit from being rebuilt with **React.js** in order to seamlessly integrate new features such as users' being able to rearrange cards on their grid, view their likes and display their comments from posts.
 
-<img width="400" height= "500"  src= "./images/screen-shot.png" alt="Screen Shot">
+<img width="666" height="779" alt="screen-shot" src="https://github.com/user-attachments/assets/b360fdb9-ca78-49e4-8d0a-555fcda015c2" />
