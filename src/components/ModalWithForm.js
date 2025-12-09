@@ -6,6 +6,7 @@ export default class ModalWithForm extends Modal {
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._modal.querySelector(".modal__form");
     this._inputList = this._form.querySelectorAll(".modal__input");
+    this._submitBtn = this._form.querySelector(".modal__save-button");
   }
 
   _getInputValues() {
@@ -23,15 +24,19 @@ export default class ModalWithForm extends Modal {
     });
   }
 
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitBtn.textContent = "Saving ...";
+    } else {
+      this._submitBtn.textContent = this._submitBtn.name;
+    }
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
     });
-  }
-
-  getForm() {
-    return this._form;
   }
 }
