@@ -4,7 +4,7 @@ A web application for users to create a profile and display image posts of place
 ### Overview
 * Introduction and demo links
 * Setup instructions
-* List of key features
+* Key features
 * File structure
 * ApI endpoints and related information
 * Future directions
@@ -15,9 +15,6 @@ This project was completed in 7 stages at the end of each 3-5 week sprint (part-
 The designs for this project were obtained from 👉 [**this Figma file**](https://www.figma.com/design/E5x6ib3osaUUNwLRRAsTDX/Sprint-9-%E2%80%94-Applied-JavaScript?node-id=1530-2&p=f&t=XZrHmaK6rN2f8UjO-0).
 
 ### 🌐 The web app demo can be viewed at 👉 [**this URL**](https://roxannecodes.github.io/se_project_aroundtheus/).
-
-#### 🌐 The project demo video can be viewed 👉 [**Here**]().
-
 
 
 # Instructions for local setup
@@ -152,12 +149,12 @@ Subsequent runs
 
 🔳 **PUT /cards/:cardId/likes**
   - Like a card
-  -  Response returns the updated card object with `likes`
+  -  Response returns the updated card object with `"isLiked":true`
 
 🔳 **DELETE /cards/:cardId/likes**
 
  - Remove current user's like from the card
- -  Response returns the updated card object with `likes`
+ -  Response returns the updated card object with `"isLiked":false`
 
 ## Future Directions
 
